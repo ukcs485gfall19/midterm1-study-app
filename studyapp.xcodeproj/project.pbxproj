@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		7A7513072339193B00E6AC46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A7513062339193B00E6AC46 /* Assets.xcassets */; };
 		7A75130A2339193B00E6AC46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7513082339193B00E6AC46 /* LaunchScreen.storyboard */; };
 		7A75131223391AD800E6AC46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A75131123391AD800E6AC46 /* GoogleService-Info.plist */; };
+		7ADEC319233923F0002A8429 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEC318233923F0002A8429 /* ComposeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		7A75130B2339193B00E6AC46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A75131123391AD800E6AC46 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7AA5C55D0DBC8186E4CEB974 /* Pods_studyapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_studyapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ADEC318233923F0002A8429 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		CEE55E32B832FB224D7812E3 /* Pods-studyapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-studyapp.release.xcconfig"; path = "Target Support Files/Pods-studyapp/Pods-studyapp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +58,6 @@
 				50E87B2285C59EB3BD3D9328 /* Pods-studyapp.debug.xcconfig */,
 				CEE55E32B832FB224D7812E3 /* Pods-studyapp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -83,6 +84,7 @@
 			children = (
 				7A7512FF2339193900E6AC46 /* AppDelegate.swift */,
 				7A7513012339193900E6AC46 /* ViewController.swift */,
+				7ADEC318233923F0002A8429 /* ComposeViewController.swift */,
 				7A7513032339193900E6AC46 /* Main.storyboard */,
 				7A7513062339193B00E6AC46 /* Assets.xcassets */,
 				7A7513082339193B00E6AC46 /* LaunchScreen.storyboard */,
@@ -207,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ADEC319233923F0002A8429 /* ComposeViewController.swift in Sources */,
 				7A7513022339193900E6AC46 /* ViewController.swift in Sources */,
 				7A7513002339193900E6AC46 /* AppDelegate.swift in Sources */,
 			);
