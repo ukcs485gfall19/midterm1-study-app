@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RbY-cF-eyy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RbY-cF-eyy">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,6 +52,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="9hq-E4-zqD" id="Lzi-RV-RjK"/>
+                        <segue destination="ejR-C4-znz" kind="show" identifier="segue" id="TB0-1X-X8t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -109,6 +110,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWr-8Q-BOC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1902.8985507246377" y="750.66964285714278"/>
+        </scene>
+        <!--Cell View Controller-->
+        <scene sceneID="McO-L1-acI">
+            <objects>
+                <viewController id="ejR-C4-znz" customClass="CellViewController" customModule="messagingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4cn-3u-kTb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2Zs-cg-ZgS">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WBh-UE-6E7" firstAttribute="bottom" secondItem="2Zs-cg-ZgS" secondAttribute="bottom" id="P1U-MM-0k9"/>
+                            <constraint firstItem="2Zs-cg-ZgS" firstAttribute="top" secondItem="WBh-UE-6E7" secondAttribute="top" id="YBB-ly-u2v"/>
+                            <constraint firstItem="WBh-UE-6E7" firstAttribute="trailing" secondItem="2Zs-cg-ZgS" secondAttribute="trailing" id="aKj-F5-sq7"/>
+                            <constraint firstItem="2Zs-cg-ZgS" firstAttribute="leading" secondItem="WBh-UE-6E7" secondAttribute="leading" id="nlQ-Zl-syb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WBh-UE-6E7"/>
+                    </view>
+                    <connections>
+                        <outlet property="test" destination="2Zs-cg-ZgS" id="s2A-9g-pTK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="geh-Xo-twL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1891.304347826087" y="1487.9464285714284"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5Wi-Sj-cuF">

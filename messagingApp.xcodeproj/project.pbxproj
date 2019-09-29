@@ -15,6 +15,7 @@
 		194678BF232AD46300995AF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 194678BD232AD46300995AF7 /* LaunchScreen.storyboard */; };
 		194678C7232AD4B900995AF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 194678C6232AD4B900995AF7 /* GoogleService-Info.plist */; };
 		53D5DE44360D3DC41C0A150C /* Pods_messagingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AE258E28AC5368DDB7C249 /* Pods_messagingApp.framework */; };
+		7A76F2BB23401C2400D5CB5E /* CellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76F2BA23401C2400D5CB5E /* CellViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		194678C6232AD4B900995AF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4A27E98E4568234219212173 /* Pods-messagingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-messagingApp.debug.xcconfig"; path = "Target Support Files/Pods-messagingApp/Pods-messagingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		68AE258E28AC5368DDB7C249 /* Pods_messagingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_messagingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A76F2BA23401C2400D5CB5E /* CellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewController.swift; sourceTree = "<group>"; };
 		C9154541D4BB163222A40FFD /* Pods-messagingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-messagingApp.release.xcconfig"; path = "Target Support Files/Pods-messagingApp/Pods-messagingApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +75,7 @@
 				194678BD232AD46300995AF7 /* LaunchScreen.storyboard */,
 				194678C0232AD46300995AF7 /* Info.plist */,
 				194678C6232AD4B900995AF7 /* GoogleService-Info.plist */,
+				7A76F2BA23401C2400D5CB5E /* CellViewController.swift */,
 			);
 			path = messagingApp;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			files = (
 				1932A01D233C693300212C13 /* ComposeViewController.swift in Sources */,
 				194678B7232AD46100995AF7 /* ViewController.swift in Sources */,
+				7A76F2BB23401C2400D5CB5E /* CellViewController.swift in Sources */,
 				194678B5232AD46000995AF7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

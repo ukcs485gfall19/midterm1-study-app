@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     
     var postData = [String]()
-    
+    var passMe = ""
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
     
@@ -49,7 +49,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return cell!
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        passMe = postData[indexPath.row]
+        performSegue(withIdentifier: "segue", sender: self)
+    }
 
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "segue" {
+        var vc = segue.destination as! CellViewController
+            vc.finalName = self.passMe
+        }
+    }
+    
 }
 
