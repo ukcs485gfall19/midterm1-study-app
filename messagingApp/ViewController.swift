@@ -59,7 +59,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "segue" {
-        var vc = segue.destination as! CellViewController
+        let vc = segue.destination as! CellViewController
             vc.finalName = self.passMe
         }
     }
