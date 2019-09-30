@@ -13,6 +13,7 @@ import FirebaseDatabase
 class CellViewController: UIViewController {
     
     @IBOutlet weak var test: UITextView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var ref:DatabaseReference?
     
@@ -28,7 +29,8 @@ class CellViewController: UIViewController {
             let value = snapshot.value as? NSDictionary
             let title = value?["Title"] as? String ?? "Title Placeholder"
             let body = value?["Body"] as? String ?? "Body Placeholder"
-            self.test.text = title + "\n\n" + body
+            self.test.text = body
+            self.titleLabel.text = title
         })
         
         //test.text = finalName //@@@@@@@@@@@@
