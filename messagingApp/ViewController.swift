@@ -14,8 +14,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navItem: UINavigationItem!
     
-    var postData = [String]()
-    var passMe = ""
+    var postData = [String]() //holds a list of database post keys
+    var passMe = "" //holds the unique database post key to be passed to the cell view
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
     
@@ -44,7 +44,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell")
+        
         ref?.child("Posts").child(postData[indexPath.row]).observeSingleEvent(of: .value, with: {(snapshot) in
             let value = snapshot.value as? NSDictionary
             let title = value?["Title"] as? String ?? "Title Placeholder"
@@ -58,6 +60,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         passMe = postData[indexPath.row]
+        
         performSegue(withIdentifier: "segue", sender: self)
     }
 
@@ -65,7 +68,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if segue.identifier == "segue" {
         let vc = segue.destination as! CellViewController
-            vc.postId = self.passMe
+            vc.postId = self.passMe //passing id to cell view
         }
     }
     

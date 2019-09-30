@@ -27,13 +27,16 @@ class CellViewController: UIViewController {
         
         ref?.child("Posts").child(postId).observeSingleEvent(of: .value, with: {(snapshot) in
             let value = snapshot.value as? NSDictionary
-            let title = value?["Title"] as? String ?? "Title Placeholder"
+            
+            //setting body
             let body = value?["Body"] as? String ?? "Body Placeholder"
             self.test.text = body
+            
+            //setting title
+            let title = value?["Title"] as? String ?? "Title Placeholder"
             self.titleLabel.text = title
         })
         
-        //test.text = finalName //@@@@@@@@@@@@
     }
     
     override func didReceiveMemoryWarning() {
