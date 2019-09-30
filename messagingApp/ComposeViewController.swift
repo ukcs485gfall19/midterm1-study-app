@@ -26,11 +26,11 @@ class ComposeViewController: UIViewController {
     @IBAction func addPost(_ sender: Any) {
         //add to database
         if textView.text != "" {
-            ref?.child("Posts").childByAutoId().setValue(textView.text)
+            //ref?.child("Posts").childByAutoId().setValue(textView.text)
 
-            /*let id:String? = ref?.child("Posts").childByAutoId().key
+            let id:String? = ref?.child("Posts").childByAutoId().key
             ref?.child("Posts").child(id!).child("Body").setValue(textView.text) //not sure about this, Im forcibly unwrapping something that couls be nil. can it be nil?? idk...
-            ref?.child("Posts").child(id!).child("Title").setValue("Hi, I'm a title")*/
+            ref?.child("Posts").child(id!).child("Title").setValue("Hi, I'm a title")
         }
         //close popup
         presentingViewController?.dismiss(animated: true, completion: nil)

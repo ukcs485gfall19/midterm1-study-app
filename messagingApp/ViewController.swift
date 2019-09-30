@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //retrieve posts and listen for changes
         databaseHandle = ref?.child("Posts").observe(.childAdded, with: { (snapshot) in
-            let post = snapshot.value as? String
+            let post = snapshot.value as? String 
             if let actualPost = post{
                 self.postData.append(actualPost)
                 self.tableView.reloadData()

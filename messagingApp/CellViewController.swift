@@ -13,7 +13,7 @@ class CellViewController: UIViewController {
     
     @IBOutlet weak var test: UITextView!
     
-    var finalName = ""
+    var finalName = "" // INITIALIZE BLANK OBJECT FOR SEGUE
     
     override func viewDidLoad() {
         super.viewDidLoad()
