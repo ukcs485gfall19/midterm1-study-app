@@ -7,19 +7,31 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 //var finalName = ""
 class CellViewController: UIViewController {
     
     @IBOutlet weak var test: UITextView!
     
-    var finalName = "" // INITIALIZE BLANK OBJECT FOR SEGUE
+    var ref:DatabaseReference?
+    
+    var postId = "" // INITIALIZE BLANK OBJECT FOR SEGUE
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
 
         // Do any additional setup after loading the view.
-        test.text = finalName
+        
+        ref?.child("Posts").child(postId).observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let title = value?["Title"] as? String ?? "Title Placeholder"
+            let body = value?["Body"] as? String ?? "Body Placeholder"
+            self.test.text = title + "\n\n" + body
+        })
+        
+        //test.text = finalName //@@@@@@@@@@@@
     }
     
     override func didReceiveMemoryWarning() {

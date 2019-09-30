@@ -63,7 +63,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if segue.identifier == "segue" {
         let vc = segue.destination as! CellViewController
-            vc.finalName = self.passMe
+            vc.postId = self.passMe
         }
     }
     
