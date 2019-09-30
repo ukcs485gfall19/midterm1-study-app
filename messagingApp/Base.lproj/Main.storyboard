@@ -85,27 +85,41 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Giz-tg-g5i">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uh6-P0-AIJ">
+                                <rect key="frame" x="10" y="108" width="394" height="40"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Vjn-E2-jCm"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dIa-Ol-6tj">
+                                <rect key="frame" x="10" y="158" width="394" height="694"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="Uh6-P0-AIJ" secondAttribute="trailing" constant="10" id="6Tl-it-5cB"/>
+                            <constraint firstItem="oWn-4L-Tsa" firstAttribute="bottom" secondItem="dIa-Ol-6tj" secondAttribute="bottom" constant="10" id="6yn-HM-jpA"/>
                             <constraint firstItem="EMx-ut-9Lj" firstAttribute="top" secondItem="oWn-4L-Tsa" secondAttribute="top" id="Db9-ma-4Y5"/>
-                            <constraint firstItem="Giz-tg-g5i" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" id="DlJ-Ma-fP8"/>
-                            <constraint firstItem="Giz-tg-g5i" firstAttribute="top" secondItem="EMx-ut-9Lj" secondAttribute="bottom" id="FVx-Dc-gvx"/>
-                            <constraint firstItem="oWn-4L-Tsa" firstAttribute="bottom" secondItem="Giz-tg-g5i" secondAttribute="bottom" id="VEW-VZ-RtT"/>
+                            <constraint firstItem="Uh6-P0-AIJ" firstAttribute="top" secondItem="EMx-ut-9Lj" secondAttribute="bottom" constant="20" id="Kn8-pp-FRd"/>
+                            <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="dIa-Ol-6tj" secondAttribute="trailing" constant="10" id="YdA-Mq-eoJ"/>
                             <constraint firstItem="EMx-ut-9Lj" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" id="abV-EF-74E"/>
-                            <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="Giz-tg-g5i" secondAttribute="trailing" id="dm8-Jc-8Dk"/>
+                            <constraint firstItem="dIa-Ol-6tj" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="mmZ-wJ-auP"/>
+                            <constraint firstItem="Uh6-P0-AIJ" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="taw-yf-qoy"/>
                             <constraint firstItem="EMx-ut-9Lj" firstAttribute="trailing" secondItem="oWn-4L-Tsa" secondAttribute="trailing" id="zFx-8C-tIp"/>
+                            <constraint firstItem="dIa-Ol-6tj" firstAttribute="top" secondItem="Uh6-P0-AIJ" secondAttribute="bottom" constant="10" id="zzo-Yy-0MP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oWn-4L-Tsa"/>
                     </view>
                     <connections>
-                        <outlet property="textView" destination="Giz-tg-g5i" id="xo3-Un-doc"/>
+                        <outlet property="bodyTextField" destination="dIa-Ol-6tj" id="nBy-eO-5mf"/>
+                        <outlet property="titleTextField" destination="Uh6-P0-AIJ" id="j0C-gn-UHz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWr-8Q-BOC" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -10,8 +10,10 @@ import UIKit
 import FirebaseDatabase
 
 class ComposeViewController: UIViewController {
-
-    @IBOutlet weak var textView: UITextView!
+    
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var bodyTextField: UITextView!
+    
     
     var ref:DatabaseReference?
     
@@ -25,15 +27,15 @@ class ComposeViewController: UIViewController {
     
     @IBAction func addPost(_ sender: Any) {
         //add to database
-        if textView.text != "" {
+        if titleTextField.text != "" {
             //create a new child with an auto-generated id
             let id:String? = ref?.child("Posts").childByAutoId().key
             
             //here is where the body tag is set
-            ref?.child("Posts").child(id!).child("Body").setValue(textView.text) //not sure about this, Im forcibly unwrapping something that couls be nil. can it be nil?? idk... still need to check on that
+            ref?.child("Posts").child(id!).child("Body").setValue(bodyTextField.text) //not sure about this, Im forcibly unwrapping something that couls be nil. can it be nil?? idk... still need to check on that
             
             //here is where the title tag is set
-            ref?.child("Posts").child(id!).child("Title").setValue("Hi, I'm a title")
+            ref?.child("Posts").child(id!).child("Title").setValue(titleTextField.text)
             
             //additional fields can be added here when needed
         }
