@@ -70,12 +70,12 @@
 				194678B4232AD46000995AF7 /* AppDelegate.swift */,
 				194678B6232AD46100995AF7 /* ViewController.swift */,
 				1932A01C233C693200212C13 /* ComposeViewController.swift */,
+				7A76F2BA23401C2400D5CB5E /* CellViewController.swift */,
 				194678B8232AD46100995AF7 /* Main.storyboard */,
 				194678BB232AD46300995AF7 /* Assets.xcassets */,
 				194678BD232AD46300995AF7 /* LaunchScreen.storyboard */,
 				194678C0232AD46300995AF7 /* Info.plist */,
 				194678C6232AD4B900995AF7 /* GoogleService-Info.plist */,
-				7A76F2BA23401C2400D5CB5E /* CellViewController.swift */,
 			);
 			path = messagingApp;
 			sourceTree = "<group>";

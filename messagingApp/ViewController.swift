@@ -30,11 +30,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //retrieve posts and listen for changes
         databaseHandle = ref?.child("Posts").observe(.childAdded, with: { (snapshot) in
-            let post = snapshot.value as? String 
-            if let actualPost = post{
-                self.postData.append(actualPost)
-                self.tableView.reloadData()
-            }
+            let postId = snapshot.key
+            self.postData.append(postId)
+            self.tableView.reloadData()
         })
         
     }
@@ -45,7 +43,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell")
-        cell?.textLabel?.text = postData[indexPath.row]
+        ref?.child("Posts").child(postData[indexPath.row]).observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let title = value?["Title"] as? String ?? "Title Placeholder"
+            cell?.textLabel?.text = title //this is what actually gets put in the cell
+        })
+        
         
         return cell!
     }
