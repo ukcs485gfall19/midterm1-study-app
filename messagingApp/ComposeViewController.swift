@@ -4,7 +4,7 @@
 //
 //  Created by Joshua Steinbach on 9/25/19.
 //  Copyright © 2019 Joshua Steinbach. All rights reserved.
-//
+// fix commit
 
 import UIKit
 import FirebaseDatabase
