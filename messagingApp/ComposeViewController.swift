@@ -9,12 +9,19 @@
 import UIKit
 import FirebaseDatabase
 
-class ComposeViewController: UIViewController, UITextViewDelegate{
+class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate{
     
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var majorTextField: UITextField!
+    @IBOutlet weak var classTextField: UITextField!
     @IBOutlet weak var bodyTextField: UITextView!
     
+    //hard coded dummy data, need to 
+    var majorData = ["Math", "Computers", "Eginurin", "Other Lame Things"]
+    var classData = [["101", "102", "103", "104"],["115","215","315","485","499"],["1","12","17"],["69","420","876","10000000"]]
     
+    var majorPicker = UIPickerView()
+    var classPicker = UIPickerView()
     var ref:DatabaseReference?
     
     override func viewDidLoad() {
@@ -23,11 +30,66 @@ class ComposeViewController: UIViewController, UITextViewDelegate{
         ref = Database.database().reference()
 
         // Do any additional setup after loading the view.
+        majorPicker.delegate = self
+        majorPicker.dataSource = self
+        majorPicker.tag = 0
+        classPicker.delegate = self
+        classPicker.dataSource = self
+        classPicker.tag = 1
+        
+        majorTextField.inputView = majorPicker
+        classTextField.inputView = classPicker
         
         bodyTextField.text = "Body"
         bodyTextField.textColor = UIColor.lightGray
         
         bodyTextField.delegate = self
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == 0{
+            return majorData.count
+        }
+        if pickerView.tag == 1 {
+            let index = majorData.firstIndex(of: majorTextField.text ?? "")// if majorTextField is null then index won't be able to find anything and thus will be null as well
+            if (index != nil){
+                return classData[index ?? 0].count //I think this is fine, not sure tho
+            }
+            return 0
+        }
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == 0{
+            return majorData[row]
+        }
+        if pickerView.tag == 1 {
+            let index = majorData.firstIndex(of: majorTextField.text ?? "")
+            if (index != nil){
+                return classData[index ?? 0][row]
+            }
+            return ""
+        }
+        return ""
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 0{
+            majorTextField.text = majorData[row]
+            classTextField.text = ""
+        }
+        if pickerView.tag == 1 {
+            let index = majorData.firstIndex(of: majorTextField.text ?? "")
+            if (index != nil){
+                classTextField.text = classData[index ?? 0][row]
+            }
+        }
+        self.view.endEditing(false)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
