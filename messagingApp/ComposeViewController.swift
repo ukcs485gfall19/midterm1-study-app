@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate{
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextField: UITextView!
@@ -23,6 +23,32 @@ class ComposeViewController: UIViewController {
         ref = Database.database().reference()
 
         // Do any additional setup after loading the view.
+        
+        bodyTextField.text = "Body"
+        bodyTextField.textColor = UIColor.lightGray
+        
+        bodyTextField.delegate = self
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if bodyTextField.text == "Body"{
+            bodyTextField.text = ""
+            bodyTextField.textColor = UIColor.black
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n"{
+            textView.resignFirstResponder()
+        }
+        return true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if bodyTextField.text == ""{
+            bodyTextField.text = "Body"
+            bodyTextField.textColor = UIColor.lightGray
+        }
     }
     
     @IBAction func addPost(_ sender: Any) {
