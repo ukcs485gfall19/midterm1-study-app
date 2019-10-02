@@ -16,7 +16,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     @IBOutlet weak var classTextField: UITextField!
     @IBOutlet weak var bodyTextField: UITextView!
     
-    //hard coded dummy data, need to 
+    //hard coded dummy data, need to
     var majorData = ["Math", "Computers", "Eginurin", "Other Lame Things"]
     var classData = [["101", "102", "103", "104"],["115","215","315","485","499"],["1","12","17"],["69","420","876","10000000"]]
     
@@ -115,7 +115,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     
     @IBAction func addPost(_ sender: Any) {
         //add to database
-        if titleTextField.text != "" {
+        if titleTextField.text != "" && majorTextField.text != "" && classTextField.text != ""{
             //create a new child with an auto-generated id
             let id:String? = ref?.child("Posts").childByAutoId().key
             
@@ -125,17 +125,28 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
             //here is where the title tag is set
             ref?.child("Posts").child(id!).child("Title").setValue(titleTextField.text)
             
+            //here is where the major tag is set
+            ref?.child("Posts").child(id!).child("Major").setValue(majorTextField.text)
+            
+            //here is where the class tag is set
+            ref?.child("Posts").child(id!).child("Class").setValue(classTextField.text)
+            
             //additional fields can be added here when needed
+            
+            //close popup
+            presentingViewController?.dismiss(animated: true, completion: nil)
         }
-        //close popup
-        presentingViewController?.dismiss(animated: true, completion: nil)
+        else{
+            let alertController = UIAlertController(title: "Alert", message: "Please fill out all requred fields", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     @IBAction func cancelPost(_ sender: Any) {
         //close popup
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    
     
     /*
     // MARK: - Navigation
