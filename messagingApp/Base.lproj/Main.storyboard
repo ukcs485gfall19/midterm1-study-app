@@ -94,7 +94,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dIa-Ol-6tj">
-                                <rect key="frame" x="10" y="246" width="394" height="552"/>
+                                <rect key="frame" x="10" y="346" width="394" height="452"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -117,24 +117,43 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PX9-dU-4bl">
+                                <rect key="frame" x="10" y="246" width="394" height="35"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82C-Cn-9gm">
+                                <rect key="frame" x="10" y="291" width="394" height="35"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="PX9-dU-4bl" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="3kd-T8-vRt"/>
                             <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="Uh6-P0-AIJ" secondAttribute="trailing" constant="10" id="6Tl-it-5cB"/>
                             <constraint firstItem="oWn-4L-Tsa" firstAttribute="bottom" secondItem="dIa-Ol-6tj" secondAttribute="bottom" constant="10" id="6yn-HM-jpA"/>
                             <constraint firstItem="d52-46-Elv" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="8Ay-Zy-UHS"/>
-                            <constraint firstItem="dIa-Ol-6tj" firstAttribute="top" secondItem="d52-46-Elv" secondAttribute="bottom" constant="20" id="DBO-64-aqD"/>
                             <constraint firstItem="EMx-ut-9Lj" firstAttribute="top" secondItem="oWn-4L-Tsa" secondAttribute="top" id="Db9-ma-4Y5"/>
                             <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="69L-t5-qB7" secondAttribute="trailing" constant="10" id="Ei7-Tz-nqr"/>
                             <constraint firstItem="69L-t5-qB7" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="FKm-Nx-P4F"/>
                             <constraint firstItem="Uh6-P0-AIJ" firstAttribute="top" secondItem="EMx-ut-9Lj" secondAttribute="bottom" constant="20" id="Kn8-pp-FRd"/>
+                            <constraint firstItem="82C-Cn-9gm" firstAttribute="top" secondItem="PX9-dU-4bl" secondAttribute="bottom" constant="10" id="MWf-Zc-O2i"/>
+                            <constraint firstItem="82C-Cn-9gm" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="PCX-pJ-JB2"/>
+                            <constraint firstItem="dIa-Ol-6tj" firstAttribute="top" secondItem="82C-Cn-9gm" secondAttribute="bottom" constant="20" id="RgP-ei-r0A"/>
                             <constraint firstItem="d52-46-Elv" firstAttribute="top" secondItem="69L-t5-qB7" secondAttribute="bottom" constant="10" id="UOL-bJ-4PW"/>
                             <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="dIa-Ol-6tj" secondAttribute="trailing" constant="10" id="YdA-Mq-eoJ"/>
                             <constraint firstItem="69L-t5-qB7" firstAttribute="top" secondItem="Uh6-P0-AIJ" secondAttribute="bottom" constant="20" id="Z1f-rK-1LN"/>
                             <constraint firstItem="EMx-ut-9Lj" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" id="abV-EF-74E"/>
+                            <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="PX9-dU-4bl" secondAttribute="trailing" constant="10" id="hZ3-Cy-ypV"/>
+                            <constraint firstItem="PX9-dU-4bl" firstAttribute="top" secondItem="d52-46-Elv" secondAttribute="bottom" constant="20" id="hbo-ab-zlQ"/>
                             <constraint firstItem="dIa-Ol-6tj" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="mmZ-wJ-auP"/>
                             <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="d52-46-Elv" secondAttribute="trailing" constant="10" id="s0V-r7-8Ak"/>
                             <constraint firstItem="Uh6-P0-AIJ" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="taw-yf-qoy"/>
+                            <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="82C-Cn-9gm" secondAttribute="trailing" constant="10" id="teM-LF-bbd"/>
+                            <constraint firstItem="82C-Cn-9gm" firstAttribute="leading" secondItem="PX9-dU-4bl" secondAttribute="trailing" constant="10" id="w45-Q8-RPt"/>
                             <constraint firstItem="EMx-ut-9Lj" firstAttribute="trailing" secondItem="oWn-4L-Tsa" secondAttribute="trailing" id="zFx-8C-tIp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oWn-4L-Tsa"/>
@@ -142,6 +161,8 @@
                     <connections>
                         <outlet property="bodyTextField" destination="dIa-Ol-6tj" id="nBy-eO-5mf"/>
                         <outlet property="classTextField" destination="d52-46-Elv" id="0GV-9e-GFW"/>
+                        <outlet property="dateTextField" destination="82C-Cn-9gm" id="6nT-yX-G97"/>
+                        <outlet property="locTextField" destination="PX9-dU-4bl" id="nyr-94-pMZ"/>
                         <outlet property="majorTextField" destination="69L-t5-qB7" id="Bkk-SA-AhQ"/>
                         <outlet property="titleTextField" destination="Uh6-P0-AIJ" id="j0C-gn-UHz"/>
                     </connections>

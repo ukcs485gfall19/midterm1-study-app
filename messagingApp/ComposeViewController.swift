@@ -15,7 +15,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     @IBOutlet weak var majorTextField: UITextField!
     @IBOutlet weak var classTextField: UITextField!
     @IBOutlet weak var bodyTextField: UITextView!
-    
+    @IBOutlet weak var locTextField: UITextField!
+    @IBOutlet weak var dateTextField: UITextField!
     //hard coded dummy data, need to
     var majorData = ["MA", "CS", "EE", "MGT"]
     var classData = [["111", "112", "213", "336"], ["115","215","315","375","485","499"], ["101","102","380"], ["69","420","42069","69420"]]
@@ -136,6 +137,12 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
             ref?.child("Posts").child(id!).child("Class").setValue(classTextField.text)
             
             //additional fields can be added here when needed
+            
+            //here is where the location tag is set
+            ref?.child("Posts").child(id!).child("Location").setValue(locTextField.text)
+            
+            //here is where the date tag is set
+            ref?.child("Posts").child(id!).child("Date").setValue(dateTextField.text)
             
             //close popup
             presentingViewController?.dismiss(animated: true, completion: nil)
