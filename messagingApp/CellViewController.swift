@@ -14,6 +14,7 @@ class CellViewController: UIViewController {
     
     @IBOutlet weak var test: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var courseLabel: UILabel!
     
     var ref:DatabaseReference?
     
@@ -35,6 +36,11 @@ class CellViewController: UIViewController {
             //setting title
             let title = value?["Title"] as? String ?? "Title Placeholder"
             self.titleLabel.text = title
+            
+            //setting course
+            let major = value?["Major"] as? String ?? "Course"
+            let theClass = value?["Class"] as? String ?? "Class"
+            self.courseLabel.text = "Course: " + major + " " + theClass
         })
         
     }

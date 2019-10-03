@@ -17,8 +17,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     @IBOutlet weak var bodyTextField: UITextView!
     
     //hard coded dummy data, need to
-    var majorData = ["Math", "Computers", "Eginurin", "Other Lame Things"]
-    var classData = [["101", "102", "103", "104"],["115","215","315","485","499"],["1","12","17"],["69","420","876","10000000"]]
+    var majorData = ["MA", "CS", "EE", "MGT"]
+    var classData = [["111", "112", "213", "336"], ["115","215","315","375","485","499"], ["101","102","380"], ["69","420","42069","69420"]]
     
     var majorPicker = UIPickerView()
     var classPicker = UIPickerView()
@@ -41,7 +41,11 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         classTextField.inputView = classPicker
         
         bodyTextField.text = "Body"
-        bodyTextField.textColor = UIColor.lightGray
+        bodyTextField.textColor = UIColor(red: 0, green: 0, blue: 0.0980392, alpha: 0.22)
+        bodyTextField.layer.cornerRadius = 5
+        bodyTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        bodyTextField.layer.borderWidth = 0.5
+        bodyTextField.clipsToBounds = true
         
         bodyTextField.delegate = self
     }
@@ -95,7 +99,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     func textViewDidBeginEditing(_ textView: UITextView) {
         if bodyTextField.text == "Body"{
             bodyTextField.text = ""
-            bodyTextField.textColor = UIColor.black
+            bodyTextField.textColor = UIColor.darkText
         }
     }
     
@@ -109,7 +113,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     func textViewDidEndEditing(_ textView: UITextView) {
         if bodyTextField.text == ""{
             bodyTextField.text = "Body"
-            bodyTextField.textColor = UIColor.lightGray
+            bodyTextField.textColor = UIColor(red: 0, green: 0, blue: 0.0980392, alpha: 0.22)
         }
     }
     
