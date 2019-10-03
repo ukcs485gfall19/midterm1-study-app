@@ -23,7 +23,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     
     var majorPicker = UIPickerView()
     var classPicker = UIPickerView()
+    var datePicker = UIDatePicker()
+    var datePicked: Date?
     var ref:DatabaseReference?
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,15 +34,24 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         ref = Database.database().reference()
 
         // Do any additional setup after loading the view.
+        datePicker.minimumDate = Date()
         majorPicker.delegate = self
         majorPicker.dataSource = self
         majorPicker.tag = 0
         classPicker.delegate = self
         classPicker.dataSource = self
         classPicker.tag = 1
+        //setup the dateFormatter
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        dateFormatter.locale = Locale(identifier: "en_US")
+        //setup the date
+        dateTextField.text = dateFormatter.string(from: Date())
+        datePicker.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
         
         majorTextField.inputView = majorPicker
         classTextField.inputView = classPicker
+        dateTextField.inputView = datePicker
         
         bodyTextField.text = "Body"
         bodyTextField.textColor = UIColor(red: 0, green: 0, blue: 0.0980392, alpha: 0.22)
@@ -69,6 +81,9 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         return 0
     }
     
+    @objc func dateChanged(datePicker:UIDatePicker){
+        dateTextField.text = dateFormatter.string(from:datePicker.date)
+    }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 0{
             return majorData[row]
@@ -142,7 +157,11 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
             ref?.child("Posts").child(id!).child("Location").setValue(locTextField.text)
             
             //here is where the date tag is set
-            ref?.child("Posts").child(id!).child("Date").setValue(dateTextField.text)
+            
+            datePicked = datePicker.date
+            var displaystring:String
+            displaystring = dateFormatter.string(from: datePicked!)
+            ref?.child("Posts").child(id!).child("Date").setValue(displaystring)
             
             //close popup
             presentingViewController?.dismiss(animated: true, completion: nil)
