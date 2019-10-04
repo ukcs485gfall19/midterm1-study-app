@@ -94,7 +94,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dIa-Ol-6tj">
-                                <rect key="frame" x="10" y="346" width="394" height="452"/>
+                                <rect key="frame" x="10" y="356" width="394" height="442"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -118,14 +118,20 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PX9-dU-4bl">
-                                <rect key="frame" x="10" y="246" width="394" height="35"/>
+                                <rect key="frame" x="10" y="246" width="394" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Na1-dG-Gxf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82C-Cn-9gm">
-                                <rect key="frame" x="10" y="291" width="394" height="35"/>
+                                <rect key="frame" x="10" y="296" width="394" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="MzM-Ph-2hi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
@@ -153,7 +159,6 @@
                             <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="d52-46-Elv" secondAttribute="trailing" constant="10" id="s0V-r7-8Ak"/>
                             <constraint firstItem="Uh6-P0-AIJ" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="taw-yf-qoy"/>
                             <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="82C-Cn-9gm" secondAttribute="trailing" constant="10" id="teM-LF-bbd"/>
-                            <constraint firstItem="82C-Cn-9gm" firstAttribute="leading" secondItem="PX9-dU-4bl" secondAttribute="trailing" constant="10" id="w45-Q8-RPt"/>
                             <constraint firstItem="EMx-ut-9Lj" firstAttribute="trailing" secondItem="oWn-4L-Tsa" secondAttribute="trailing" id="zFx-8C-tIp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oWn-4L-Tsa"/>

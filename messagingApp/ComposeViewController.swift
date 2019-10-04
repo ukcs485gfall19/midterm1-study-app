@@ -41,10 +41,12 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         classPicker.delegate = self
         classPicker.dataSource = self
         classPicker.tag = 1
+        
         //setup the dateFormatter
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
         dateFormatter.locale = Locale(identifier: "en_US")
+        
         //setup the date
         dateTextField.text = dateFormatter.string(from: Date())
         datePicker.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
