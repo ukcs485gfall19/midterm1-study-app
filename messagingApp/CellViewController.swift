@@ -15,7 +15,8 @@ class CellViewController: UIViewController {
     @IBOutlet weak var test: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var courseLabel: UILabel!
-    
+    @IBOutlet weak var locLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     var ref:DatabaseReference?
     
     var postId = "" // INITIALIZE BLANK OBJECT FOR SEGUE
@@ -41,6 +42,12 @@ class CellViewController: UIViewController {
             let major = value?["Major"] as? String ?? "Course"
             let theClass = value?["Class"] as? String ?? "Class"
             self.courseLabel.text = "Course: " + major + " " + theClass
+            
+            //setting date/location
+            let location = value?["Location"] as? String ?? "Location Placeholder"
+            self.locLabel.text = "Location: " + location
+            let date = value?["Date"] as? String ?? "Date Placeholder"
+            self.dateLabel.text = date
         })
         
     }
