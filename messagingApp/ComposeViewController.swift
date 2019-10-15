@@ -148,10 +148,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
             ref?.child("Posts").child(id!).child("Title").setValue(titleTextField.text)
             
             //here is where the major tag is set
-            ref?.child("Posts").child(id!).child("Major").setValue(majorTextField.text)
+            ref?.child("Posts").child(id!).child("Prefix").setValue(majorTextField.text)
             
             //here is where the class tag is set
-            ref?.child("Posts").child(id!).child("Class").setValue(classTextField.text)
+            ref?.child("Posts").child(id!).child("Number").setValue(classTextField.text)
             
             //additional fields can be added here when needed
             

@@ -39,9 +39,9 @@ class CellViewController: UIViewController {
             self.titleLabel.text = title
             
             //setting course
-            let major = value?["Major"] as? String ?? "Course"
-            let theClass = value?["Class"] as? String ?? "Class"
-            self.courseLabel.text = "Course: " + major + " " + theClass
+            let prefix = value?["Prefix"] as? String ?? "Prefix"
+            let number = value?["Number"] as? String ?? "Number"
+            self.courseLabel.text = "Course: " + prefix + " " + number
             
             //setting date/location
             let location = value?["Location"] as? String ?? "Location Placeholder"
