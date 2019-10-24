@@ -18,8 +18,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     @IBOutlet weak var locTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     //hard coded dummy data, need to
-    var majorData = ["MA", "CS", "EE", "MGT"]
-    var classData = [["111", "112", "213", "336"], ["115","215","315","375","485","499"], ["101","102","380"], ["69","420","42069","69420"]]
+    var majorData = ["","MA", "CS", "EE", "MGT"]
+    var classData = [[""],["111", "112", "213", "336"], ["115","215","315","375","485","499"], ["101","102","380"], ["69","420","42069","69420"]]
     
     var majorPicker = UIPickerView()
     var classPicker = UIPickerView()
@@ -50,6 +50,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         //setup the date
         dateTextField.text = dateFormatter.string(from: Date())
         datePicker.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
+        datePicker.minuteInterval = 15;
         
         majorTextField.inputView = majorPicker
         classTextField.inputView = classPicker
@@ -63,6 +64,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         bodyTextField.clipsToBounds = true
         
         bodyTextField.delegate = self
+    }
+    
+    @objc func dateChanged(datePicker:UIDatePicker){
+        dateTextField.text = dateFormatter.string(from:datePicker.date)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -83,9 +88,6 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         return 0
     }
     
-    @objc func dateChanged(datePicker:UIDatePicker){
-        dateTextField.text = dateFormatter.string(from:datePicker.date)
-    }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 0{
             return majorData[row]
@@ -103,7 +105,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0{
             majorTextField.text = majorData[row]
-            classTextField.text = ""
+            //Kilgore change, made sure that theres something displaing when you select a prefix, idk why i added this i just think its neat
+            classTextField.text = classData[row][0]
+            //Kilgore addition, doesnt affect anything it just makes the pickers look better
+            classPicker.selectRow(0, inComponent:0, animated: false);
         }
         if pickerView.tag == 1 {
             let index = majorData.firstIndex(of: majorTextField.text ?? "")
@@ -147,14 +152,17 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
             //here is where the title tag is set
             ref?.child("Posts").child(id!).child("Title").setValue(titleTextField.text)
             
-            //here is where the prefix tag is set
-            var prefixer:String
-            let chosenNum:Int = majorPicker.selectedRow(inComponent:0)
-            prefixer = majorData[chosenNum]
-            ref?.child("Posts").child(id!).child("Prefix").setValue(prefixer)
+            //adding the indexes for the picker selected prefix and number
+            
+            let prefSelect:Int = majorPicker.selectedRow(inComponent:0)
+            let numSelect:Int = classPicker.selectedRow(inComponent:0)
+            
+            //here is where the prefix tag is set, added stuff so its only what was chosen in the picker not whatever someone types
+            
+            ref?.child("Posts").child(id!).child("Prefix").setValue(majorData[prefSelect])
             
             //here is where the number tag is set
-            ref?.child("Posts").child(id!).child("Number").setValue(classTextField.text)
+            ref?.child("Posts").child(id!).child("Number").setValue(classData[prefSelect][numSelect])
             
             //here is where the location tag is set
             ref?.child("Posts").child(id!).child("Location").setValue(locTextField.text)

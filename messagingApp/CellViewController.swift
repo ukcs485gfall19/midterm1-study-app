@@ -25,28 +25,28 @@ class CellViewController: UIViewController {
         ref = Database.database().reference()
 
         // Do any additional setup after loading the view.
-        
+        //noting small change i made here, added spaces to the beginning of each text field to make them look better
         ref?.child("Posts").child(postId).observeSingleEvent(of: .value, with: {(snapshot) in
             let value = snapshot.value as? NSDictionary
             
             //setting body
             let body = value?["Body"] as? String ?? "Body Placeholder"
-            self.test.text = body
+            self.test.text = " " + body
             
             //setting title
             let title = value?["Title"] as? String ?? "Title Placeholder"
-            self.titleLabel.text = title
+            self.titleLabel.text = "  " + title
             
             //setting course
             let prefix = value?["Prefix"] as? String ?? "Prefix"
             let number = value?["Number"] as? String ?? "Number"
-            self.courseLabel.text = "Course: " + prefix + " " + number
+            self.courseLabel.text = "  Course: " + prefix + " " + number
             
             //setting date/location
             let location = value?["Location"] as? String ?? "Location Placeholder"
-            self.locLabel.text = "Location: " + location
+            self.locLabel.text = "  Location: " + location
             let date = value?["Date"] as? String ?? "Date Placeholder"
-            self.dateLabel.text = date
+            self.dateLabel.text = "  " + date
             
 
             let labelHolster:[UILabel] = [self.titleLabel,self.courseLabel,self.locLabel,self.dateLabel]

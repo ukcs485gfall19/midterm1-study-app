@@ -190,8 +190,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vam-x1-Z7S">
-                                <rect key="frame" x="20" y="108" width="374" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vam-x1-Z7S">
+                                <rect key="frame" x="15" y="108" width="384" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="SEL-fM-JF1"/>
@@ -200,8 +200,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWT-f0-4OX">
-                                <rect key="frame" x="20" y="168" width="374" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Course: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWT-f0-4OX">
+                                <rect key="frame" x="15" y="168" width="384" height="30"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Vcc-XR-qck"/>
@@ -210,15 +210,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jh-XW-wkc">
-                                <rect key="frame" x="20" y="208" width="374" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jh-XW-wkc">
+                                <rect key="frame" x="15" y="208" width="384" height="27"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amF-9a-Zqh">
-                                <rect key="frame" x="20" y="245" width="374" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amF-9a-Zqh">
+                                <rect key="frame" x="15" y="245" width="384" height="27"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
@@ -229,20 +229,20 @@
                         <constraints>
                             <constraint firstItem="3Jh-XW-wkc" firstAttribute="top" secondItem="EWT-f0-4OX" secondAttribute="bottom" constant="10" id="0wV-zm-f7w"/>
                             <constraint firstItem="WBh-UE-6E7" firstAttribute="trailing" secondItem="2Zs-cg-ZgS" secondAttribute="trailing" constant="15" id="9wK-Kb-5Dy"/>
-                            <constraint firstItem="3Jh-XW-wkc" firstAttribute="leading" secondItem="WBh-UE-6E7" secondAttribute="leading" constant="20" id="JWR-qS-zu7"/>
+                            <constraint firstItem="3Jh-XW-wkc" firstAttribute="leading" secondItem="WBh-UE-6E7" secondAttribute="leading" constant="15" id="JWR-qS-zu7"/>
                             <constraint firstItem="Vam-x1-Z7S" firstAttribute="top" secondItem="WBh-UE-6E7" secondAttribute="top" constant="20" id="JnX-7L-aLG"/>
                             <constraint firstItem="amF-9a-Zqh" firstAttribute="top" secondItem="3Jh-XW-wkc" secondAttribute="bottom" constant="10" id="MiH-2H-TWa"/>
                             <constraint firstItem="2Zs-cg-ZgS" firstAttribute="leading" secondItem="WBh-UE-6E7" secondAttribute="leading" constant="15" id="NeL-re-BiS"/>
                             <constraint firstItem="WBh-UE-6E7" firstAttribute="bottom" secondItem="2Zs-cg-ZgS" secondAttribute="bottom" id="P1U-MM-0k9"/>
-                            <constraint firstItem="EWT-f0-4OX" firstAttribute="leading" secondItem="WBh-UE-6E7" secondAttribute="leading" constant="20" id="Pxc-XS-cCk"/>
-                            <constraint firstItem="WBh-UE-6E7" firstAttribute="trailing" secondItem="3Jh-XW-wkc" secondAttribute="trailing" constant="20" id="RjW-PI-ZwM"/>
+                            <constraint firstItem="EWT-f0-4OX" firstAttribute="leading" secondItem="WBh-UE-6E7" secondAttribute="leading" constant="15" id="Pxc-XS-cCk"/>
+                            <constraint firstItem="WBh-UE-6E7" firstAttribute="trailing" secondItem="3Jh-XW-wkc" secondAttribute="trailing" constant="15" id="RjW-PI-ZwM"/>
                             <constraint firstItem="EWT-f0-4OX" firstAttribute="top" secondItem="Vam-x1-Z7S" secondAttribute="bottom" constant="20" id="Toc-q7-xlz"/>
-                            <constraint firstItem="WBh-UE-6E7" firstAttribute="trailing" secondItem="amF-9a-Zqh" secondAttribute="trailing" constant="20" id="U6I-il-3FP"/>
-                            <constraint firstItem="Vam-x1-Z7S" firstAttribute="leading" secondItem="WBh-UE-6E7" secondAttribute="leading" constant="20" id="Vjf-DO-Ntb"/>
-                            <constraint firstItem="WBh-UE-6E7" firstAttribute="trailing" secondItem="EWT-f0-4OX" secondAttribute="trailing" constant="20" id="WXc-UV-cZX"/>
-                            <constraint firstItem="WBh-UE-6E7" firstAttribute="trailing" secondItem="Vam-x1-Z7S" secondAttribute="trailing" constant="20" id="ZBH-ON-rmi"/>
+                            <constraint firstItem="WBh-UE-6E7" firstAttribute="trailing" secondItem="amF-9a-Zqh" secondAttribute="trailing" constant="15" id="U6I-il-3FP"/>
+                            <constraint firstItem="Vam-x1-Z7S" firstAttribute="leading" secondItem="WBh-UE-6E7" secondAttribute="leading" constant="15" id="Vjf-DO-Ntb"/>
+                            <constraint firstItem="WBh-UE-6E7" firstAttribute="trailing" secondItem="EWT-f0-4OX" secondAttribute="trailing" constant="15" id="WXc-UV-cZX"/>
+                            <constraint firstItem="WBh-UE-6E7" firstAttribute="trailing" secondItem="Vam-x1-Z7S" secondAttribute="trailing" constant="15" id="ZBH-ON-rmi"/>
                             <constraint firstItem="2Zs-cg-ZgS" firstAttribute="top" secondItem="amF-9a-Zqh" secondAttribute="bottom" constant="20" id="ek7-M2-0gq"/>
-                            <constraint firstItem="amF-9a-Zqh" firstAttribute="leading" secondItem="WBh-UE-6E7" secondAttribute="leading" constant="20" id="fyE-es-mBT"/>
+                            <constraint firstItem="amF-9a-Zqh" firstAttribute="leading" secondItem="WBh-UE-6E7" secondAttribute="leading" constant="15" id="fyE-es-mBT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WBh-UE-6E7"/>
                     </view>
