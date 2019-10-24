@@ -18,7 +18,6 @@ class CellViewController: UIViewController {
     @IBOutlet weak var locLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     var ref:DatabaseReference?
-    
     var postId = "" // INITIALIZE BLANK OBJECT FOR SEGUE
     
     override func viewDidLoad() {
@@ -48,6 +47,15 @@ class CellViewController: UIViewController {
             self.locLabel.text = "Location: " + location
             let date = value?["Date"] as? String ?? "Date Placeholder"
             self.dateLabel.text = date
+            
+
+            let labelHolster:[UILabel] = [self.titleLabel,self.courseLabel,self.locLabel,self.dateLabel]
+            //setting some nice boundaries
+            for currLabel in labelHolster{
+                currLabel.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+                currLabel.layer.borderWidth = 0.5
+            }
+            
         })
         
     }

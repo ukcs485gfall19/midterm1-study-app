@@ -137,7 +137,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     
     @IBAction func addPost(_ sender: Any) {
         //add to database
-        if titleTextField.text != "" && majorTextField.text != "" && classTextField.text != ""{
+        if titleTextField.text != "" && majorTextField.text != "" && classTextField.text != "" && dateTextField.text != "" && locTextField.text != ""{
             //create a new child with an auto-generated id
             let id:String? = ref?.child("Posts").childByAutoId().key
             
@@ -147,13 +147,14 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
             //here is where the title tag is set
             ref?.child("Posts").child(id!).child("Title").setValue(titleTextField.text)
             
-            //here is where the major tag is set
-            ref?.child("Posts").child(id!).child("Prefix").setValue(majorTextField.text)
+            //here is where the prefix tag is set
+            var prefixer:String
+            let chosenNum:Int = majorPicker.selectedRow(inComponent:0)
+            prefixer = majorData[chosenNum]
+            ref?.child("Posts").child(id!).child("Prefix").setValue(prefixer)
             
-            //here is where the class tag is set
+            //here is where the number tag is set
             ref?.child("Posts").child(id!).child("Number").setValue(classTextField.text)
-            
-            //additional fields can be added here when needed
             
             //here is where the location tag is set
             ref?.child("Posts").child(id!).child("Location").setValue(locTextField.text)
