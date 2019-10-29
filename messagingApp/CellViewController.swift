@@ -31,7 +31,7 @@ class CellViewController: UIViewController {
             
             //setting body
             let body = value?["Body"] as? String ?? "Body Placeholder"
-            self.test.text = " " + body
+            self.test.text = body
             
             //setting title
             let title = value?["Title"] as? String ?? "Title Placeholder"

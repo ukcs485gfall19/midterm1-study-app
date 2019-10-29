@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         navItem.title = "Posts"
+        self.registerTableViewCells()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -39,7 +40,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var frame = CGRect.zero
         frame.size.height = .leastNormalMagnitude
         tableView.tableHeaderView = UIView(frame: frame)
-        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 600
+    }
+    
+    func registerTableViewCells(){
+        let viewFieldCell = UINib(nibName:"customViewCell",bundle:nil)
+        self.tableView.register(viewFieldCell, forCellReuseIdentifier: "customViewCell")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,12 +55,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customViewCell") as? customViewCell
         
         ref?.child("Posts").child(postData[indexPath.row]).observeSingleEvent(of: .value, with: {(snapshot) in
             let value = snapshot.value as? NSDictionary
             let title = value?["Title"] as? String ?? "Title Placeholder"
-            cell?.textLabel?.text = title //this is what actually gets put in the cell
+            let body = value?["Body"] as? String ?? "Body Placeholder"
+            cell?.header.text = title
+            cell?.footer.text = body//this is what actually gets put in the cell
         })
         
         
