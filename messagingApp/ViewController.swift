@@ -37,13 +37,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.postData.append(postId)
             self.tableView.reloadData()
         })
+        //gets rid of weird empty space at top of grouped cell view
         var frame = CGRect.zero
         frame.size.height = .leastNormalMagnitude
         tableView.tableHeaderView = UIView(frame: frame)
+        //sets the height to be automatic
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
     }
-    
+    //now i can register my custom cells
     func registerTableViewCells(){
         let viewFieldCell = UINib(nibName:"customViewCell",bundle:nil)
         self.tableView.register(viewFieldCell, forCellReuseIdentifier: "customViewCell")
@@ -54,7 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        //kilgore change, changed the cell so it loads my custom class and also sets a description blurb under the title
         let cell = tableView.dequeueReusableCell(withIdentifier: "customViewCell") as? customViewCell
         
         ref?.child("Posts").child(postData[indexPath.row]).observeSingleEvent(of: .value, with: {(snapshot) in
