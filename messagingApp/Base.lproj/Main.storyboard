@@ -94,7 +94,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dIa-Ol-6tj">
-                                <rect key="frame" x="10" y="356" width="394" height="442"/>
+                                <rect key="frame" x="10" y="406" width="394" height="392"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -126,11 +126,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82C-Cn-9gm">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82C-Cn-9gm">
                                 <rect key="frame" x="10" y="296" width="394" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="MzM-Ph-2hi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9fx-DB-kBB">
+                                <rect key="frame" x="10" y="346" width="394" height="40"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="jSY-4c-7X7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -145,14 +154,17 @@
                             <constraint firstItem="EMx-ut-9Lj" firstAttribute="top" secondItem="oWn-4L-Tsa" secondAttribute="top" id="Db9-ma-4Y5"/>
                             <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="69L-t5-qB7" secondAttribute="trailing" constant="10" id="Ei7-Tz-nqr"/>
                             <constraint firstItem="69L-t5-qB7" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="FKm-Nx-P4F"/>
+                            <constraint firstItem="9fx-DB-kBB" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="FUE-rC-Kpd"/>
+                            <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="9fx-DB-kBB" secondAttribute="trailing" constant="10" id="Gwo-Mn-S4T"/>
+                            <constraint firstItem="9fx-DB-kBB" firstAttribute="top" secondItem="82C-Cn-9gm" secondAttribute="bottom" constant="10" id="IzL-7O-AYy"/>
                             <constraint firstItem="Uh6-P0-AIJ" firstAttribute="top" secondItem="EMx-ut-9Lj" secondAttribute="bottom" constant="20" id="Kn8-pp-FRd"/>
                             <constraint firstItem="82C-Cn-9gm" firstAttribute="top" secondItem="PX9-dU-4bl" secondAttribute="bottom" constant="10" id="MWf-Zc-O2i"/>
                             <constraint firstItem="82C-Cn-9gm" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="PCX-pJ-JB2"/>
-                            <constraint firstItem="dIa-Ol-6tj" firstAttribute="top" secondItem="82C-Cn-9gm" secondAttribute="bottom" constant="20" id="RgP-ei-r0A"/>
                             <constraint firstItem="d52-46-Elv" firstAttribute="top" secondItem="69L-t5-qB7" secondAttribute="bottom" constant="10" id="UOL-bJ-4PW"/>
                             <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="dIa-Ol-6tj" secondAttribute="trailing" constant="10" id="YdA-Mq-eoJ"/>
                             <constraint firstItem="69L-t5-qB7" firstAttribute="top" secondItem="Uh6-P0-AIJ" secondAttribute="bottom" constant="20" id="Z1f-rK-1LN"/>
                             <constraint firstItem="EMx-ut-9Lj" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" id="abV-EF-74E"/>
+                            <constraint firstItem="dIa-Ol-6tj" firstAttribute="top" secondItem="9fx-DB-kBB" secondAttribute="bottom" constant="20" id="hHn-N8-oNG"/>
                             <constraint firstItem="oWn-4L-Tsa" firstAttribute="trailing" secondItem="PX9-dU-4bl" secondAttribute="trailing" constant="10" id="hZ3-Cy-ypV"/>
                             <constraint firstItem="PX9-dU-4bl" firstAttribute="top" secondItem="d52-46-Elv" secondAttribute="bottom" constant="20" id="hbo-ab-zlQ"/>
                             <constraint firstItem="dIa-Ol-6tj" firstAttribute="leading" secondItem="oWn-4L-Tsa" secondAttribute="leading" constant="10" id="mmZ-wJ-auP"/>
@@ -167,6 +179,7 @@
                         <outlet property="bodyTextField" destination="dIa-Ol-6tj" id="nBy-eO-5mf"/>
                         <outlet property="classTextField" destination="d52-46-Elv" id="0GV-9e-GFW"/>
                         <outlet property="dateTextField" destination="82C-Cn-9gm" id="6nT-yX-G97"/>
+                        <outlet property="endTimeTextField" destination="9fx-DB-kBB" id="Fig-yb-G7D"/>
                         <outlet property="locTextField" destination="PX9-dU-4bl" id="nyr-94-pMZ"/>
                         <outlet property="majorTextField" destination="69L-t5-qB7" id="Bkk-SA-AhQ"/>
                         <outlet property="titleTextField" destination="Uh6-P0-AIJ" id="j0C-gn-UHz"/>

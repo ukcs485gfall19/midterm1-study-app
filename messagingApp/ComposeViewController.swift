@@ -17,6 +17,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     @IBOutlet weak var bodyTextField: UITextView!
     @IBOutlet weak var locTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var endTimeTextField: UITextField!
     //hard coded dummy data, need to
     var majorData = ["","MA", "CS", "EE", "MGT"]
     var classData = [[""],["111", "112", "213", "336"], ["115","215","315","375","485","499"], ["101","102","380"], ["69","420","42069","69420"]]
@@ -24,9 +25,11 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     var majorPicker = UIPickerView()
     var classPicker = UIPickerView()
     var datePicker = UIDatePicker()
+    var endTimePicker = UIDatePicker()
     var datePicked: Date?
     var ref:DatabaseReference?
     let dateFormatter = DateFormatter()
+    var datePickerArr:[UIDatePicker] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         ref = Database.database().reference()
 
         // Do any additional setup after loading the view.
+        datePicker.minimumDate = Date()
         datePicker.minimumDate = Date()
         majorPicker.delegate = self
         majorPicker.dataSource = self
@@ -51,10 +55,15 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         dateTextField.text = dateFormatter.string(from: Date())
         datePicker.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
         datePicker.minuteInterval = 15;
+        endTimePicker.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
+        endTimePicker.minuteInterval = 15;
+        endTimePicker.datePickerMode = UIDatePicker.Mode.time
+        datePickerArr = [datePicker, endTimePicker]
         
         majorTextField.inputView = majorPicker
         classTextField.inputView = classPicker
         dateTextField.inputView = datePicker
+        endTimeTextField.inputView = endTimePicker
         
         bodyTextField.text = "Body"
         bodyTextField.textColor = UIColor(red: 0, green: 0, blue: 0.0980392, alpha: 0.22)
@@ -67,7 +76,16 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     }
     
     @objc func dateChanged(datePicker:UIDatePicker){
-        dateTextField.text = dateFormatter.string(from:datePicker.date)
+        let index:Int = datePickerArr.firstIndex(of:datePicker)!
+        if(index == 0){
+            dateTextField.text = dateFormatter.string(from:datePicker.date)
+            endTimePicker.minimumDate = datePicker.date
+            endTimeTextField.text = dateFormatter.string(from:endTimePicker.date)
+        }
+        if(index == 1){
+            endTimeTextField.text = dateFormatter.string(from:endTimePicker.date)
+        }
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -169,10 +187,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
             
             //here is where the date tag is set
             
-            datePicked = datePicker.date
-            var displaystring:String
-            displaystring = dateFormatter.string(from: datePicked!)
-            ref?.child("Posts").child(id!).child("Date").setValue(displaystring)
+            ref?.child("Posts").child(id!).child("Date").setValue(dateFormatter.string(from: datePicker.date))
+            ref?.child("Posts").child(id!).child("endTime").setValue(dateFormatter.string(from: endTimePicker.date))
             
             //close popup
             presentingViewController?.dismiss(animated: true, completion: nil)

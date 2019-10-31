@@ -46,7 +46,8 @@ class CellViewController: UIViewController {
             let location = value?["Location"] as? String ?? "Location Placeholder"
             self.locLabel.text = "  Location: " + location
             let date = value?["Date"] as? String ?? "Date Placeholder"
-            self.dateLabel.text = "  " + date
+            let endTime = value?["endTime"] as? String ?? "End Placeholder"
+            self.dateLabel.text = "  " + date + "-" + endTime.dropFirst(16)
             
 
             let labelHolster:[UILabel] = [self.titleLabel,self.courseLabel,self.locLabel,self.dateLabel]
