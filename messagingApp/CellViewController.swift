@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import EventKit
 
 //var finalName = ""
 class CellViewController: UIViewController {
@@ -63,7 +64,42 @@ class CellViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
+    
+    @IBAction func calendarSync(_ sender: Any) {
+        
+        let eventStore:EKEventStore = EKEventStore()
+        ref?.child("Posts").child(postId).observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? NSDictionary
+            
+        eventStore.requestAccess(to: .event, completion: {(granted, error) in
+            
+            if (granted) && (error == nil)
+            {
+                print("granted \(granted)")
+                print("error \(error)")
+                
+                var mydate = value?["Date"] as? Date
+                let event:EKEvent = EKEvent(eventStore: eventStore)
+                event.title = "test"
+                event.startDate = mydate
+                event.endDate = mydate?.addingTimeInterval(5)
+                event.notes = "test"
+                
+                do{
+                    try eventStore.save(event, span: .thisEvent)
+                }catch let error as NSError{
+                    print("error")
+                }
+                
+            }
+            
+            
+        })
+        
+        })
+    }
+    
     /*
     // MARK: - Navigation
 
