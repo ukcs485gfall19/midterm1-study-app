@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1932A01D233C693300212C13 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1932A01C233C693200212C13 /* ComposeViewController.swift */; };
+		19456B81236F875B00FC8878 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19456B80236F875B00FC8878 /* ProfileViewController.swift */; };
 		194678B5232AD46000995AF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194678B4232AD46000995AF7 /* AppDelegate.swift */; };
 		194678B7232AD46100995AF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194678B6232AD46100995AF7 /* ViewController.swift */; };
 		194678BA232AD46100995AF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 194678B8232AD46100995AF7 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		1932A01C233C693200212C13 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		19456B80236F875B00FC8878 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		194678B1232AD46000995AF7 /* messagingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = messagingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		194678B4232AD46000995AF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		194678B6232AD46100995AF7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				194678B6232AD46100995AF7 /* ViewController.swift */,
 				1932A01C233C693200212C13 /* ComposeViewController.swift */,
 				7A76F2BA23401C2400D5CB5E /* CellViewController.swift */,
+				19456B80236F875B00FC8878 /* ProfileViewController.swift */,
 				194678B8232AD46100995AF7 /* Main.storyboard */,
 				194678BD232AD46300995AF7 /* LaunchScreen.storyboard */,
 				194678BB232AD46300995AF7 /* Assets.xcassets */,
@@ -216,6 +219,7 @@
 			files = (
 				1932A01D233C693300212C13 /* ComposeViewController.swift in Sources */,
 				194678B7232AD46100995AF7 /* ViewController.swift in Sources */,
+				19456B81236F875B00FC8878 /* ProfileViewController.swift in Sources */,
 				7A76F2BB23401C2400D5CB5E /* CellViewController.swift in Sources */,
 				194678B5232AD46000995AF7 /* AppDelegate.swift in Sources */,
 			);
