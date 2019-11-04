@@ -20,6 +20,7 @@ class CellViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     var ref:DatabaseReference?
     var postId = "" // INITIALIZE BLANK OBJECT FOR SEGUE
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +72,7 @@ class CellViewController: UIViewController {
         let eventStore:EKEventStore = EKEventStore()
         ref?.child("Posts").child(postId).observeSingleEvent(of: .value, with: {(snapshot) in
             let value = snapshot.value as? NSDictionary
-            
+
         eventStore.requestAccess(to: .event, completion: {(granted, error) in
             
             if (granted) && (error == nil)
@@ -79,17 +80,18 @@ class CellViewController: UIViewController {
                 print("granted \(granted)")
                 print("error \(error)")
                 
-                var mydate = value?["Date"] as? Date
+                //var mydate = value?["Date"] as? Date
                 let event:EKEvent = EKEvent(eventStore: eventStore)
-                event.title = "test"
-                event.startDate = mydate
-                event.endDate = mydate?.addingTimeInterval(5)
-                event.notes = "test"
-                
+                event.title = value?["Title"] as? String
+                event.startDate = Date()
+                event.endDate = Date()
+                event.notes = value?["Location"] as? String
+                event.calendar = eventStore.defaultCalendarForNewEvents
                 do{
                     try eventStore.save(event, span: .thisEvent)
+                    self.showEventAdded()
                 }catch let error as NSError{
-                    print("error")
+                    print(error)
                 }
                 
             }
@@ -98,6 +100,18 @@ class CellViewController: UIViewController {
         })
         
         })
+    }
+    
+   func showEventAdded()
+   {
+        let alert = UIAlertController(title: "Event Added To Calendar", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        //alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+
+  //  guard let url = URL(string: "calshow://") else { return }
+  //  UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    
     }
     
     /*
