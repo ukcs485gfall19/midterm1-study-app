@@ -54,9 +54,9 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         //setup the date
         dateTextField.text = dateFormatter.string(from: Date())
         datePicker.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
-        datePicker.minuteInterval = 15;
+        //datePicker.minuteInterval = 15;
         endTimePicker.addTarget(self, action: #selector(dateChanged(datePicker:)), for: .valueChanged)
-        endTimePicker.minuteInterval = 15;
+        //endTimePicker.minuteInterval = 15;
         endTimePicker.datePickerMode = UIDatePicker.Mode.time
         datePickerArr = [datePicker, endTimePicker]
         
