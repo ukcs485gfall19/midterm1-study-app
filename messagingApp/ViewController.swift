@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navItem: UINavigationItem!
+    var userID:String!
     var filteredData = [String]()
     var filteredIndex = [Int]()
     var titleData = [String]()
@@ -65,7 +66,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
         
-        //search bar bullshit
+        //search bar stuff
         self.searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.sizeToFit()
         searchController.searchResultsUpdater = self
@@ -155,7 +156,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         performSegue(withIdentifier: "segue", sender: self)
     }
-
+    @IBAction func cancel(_ unwindSegue: UIStoryboardSegue) {
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "segue" {
@@ -163,6 +165,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             vc.postId = self.passMe //passing id to cell view
         }
     }
+    
     
 }
 
