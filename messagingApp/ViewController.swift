@@ -19,6 +19,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var titleData = [String]()
     var descData = [String]()
     var editingBar:Bool = false
+    var refresher:UIRefreshControl!
 
     var searchController: UISearchController!
     
@@ -40,6 +41,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //set the firebase reference
         ref = Database.database().reference()
+        
+        //sets the refresher
+        configureRefreshControl()
+        tableView.refreshControl = refresher
         
         //retrieve posts and listen for changes
         databaseHandle = ref?.child("Posts").observe(.childAdded, with: { (snapshot) in
@@ -73,6 +78,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Make the search bar always visible.
         navigationItem.hidesSearchBarWhenScrolling = false
     }
+    
+    //search bar functions
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             editingBar = true
@@ -90,6 +97,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             tableView.reloadData()
         }
     }
+    
     //now i can register my custom cells
     func registerTableViewCells(){
         let viewFieldCell = UINib(nibName:"customViewCell",bundle:nil)
@@ -105,6 +113,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    func configureRefreshControl () {
+       // Add the refresh control to your UIScrollView object.
+       refresher = UIRefreshControl()
+       refresher.addTarget(self, action:
+                                          #selector(handleRefreshControl),
+                                          for: .valueChanged)
+    }
+        
+    @objc func handleRefreshControl() {
+        if(!editingBar){
+            tableView.reloadData()
+        }
+        DispatchQueue.main.async {
+           self.refresher.endRefreshing()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //kilgore change, changed the cell so it loads my custom class and also sets a description blurb under the title
         let cell = tableView.dequeueReusableCell(withIdentifier: "customViewCell") as? customViewCell
@@ -115,13 +140,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         else{
             cell?.header.text = titleData[indexPath.row]
             cell?.footer.text = descData[indexPath.row]
-            /*ref?.child("Posts").child(postData[indexPath.row]).observeSingleEvent(of: .value, with: {(snapshot) in
-                let value = snapshot.value as? NSDictionary
-                let title = value?["Title"] as? String ?? "Title Placeholder"
-                let body = value?["Body"] as? String ?? "Body Placeholder"
-                cell?.header.text = title
-                cell?.footer.text = body//this is what actually gets put in the cell
-            })*/
         }
         
         return cell!
