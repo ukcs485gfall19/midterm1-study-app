@@ -9,10 +9,18 @@
 import UIKit
 import FirebaseDatabase
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate  {
+    
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navItem: UINavigationItem!
+    var filteredData = [String]()
+    var filteredIndex = [Int]()
+    var titleData = [String]()
+    var descData = [String]()
+    var editingBar:Bool = false
+
+    var searchController: UISearchController!
     
     var postData = [String]() //holds a list of database post keys
     var passMe = "" //holds the unique database post key to be passed to the cell view
@@ -28,6 +36,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         
+        
+        
         //set the firebase reference
         ref = Database.database().reference()
         
@@ -35,6 +45,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         databaseHandle = ref?.child("Posts").observe(.childAdded, with: { (snapshot) in
             let postId = snapshot.key
             self.postData.append(postId)
+            let value = snapshot.value as? NSDictionary
+            self.titleData.append(value?["Title"] as? String ?? "Title Placeholder")
+            self.descData.append(value?["Body"] as? String ?? "Body Placeholder")
+            self.filteredData = self.titleData
+            self.filteredIndex.append(-1)
             self.tableView.reloadData()
         })
         //gets rid of weird empty space at top of grouped cell view
@@ -44,6 +59,36 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //sets the height to be automatic
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
+        
+        //search bar bullshit
+        self.searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.sizeToFit()
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Posts"
+        definesPresentationContext = true
+        searchController.searchBar.delegate = self
+        
+        navigationItem.searchController = searchController
+        // Make the search bar always visible.
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            editingBar = true
+            filteredData = []
+            filteredIndex = []
+            for indexString in titleData{
+                if(indexString.lowercased().contains(searchText.lowercased())){
+                    filteredData.append(indexString)
+                    filteredIndex.append(titleData.firstIndex(of:indexString) ?? 0)
+                }
+            }
+            if(searchText.count==0){
+                editingBar = false
+            }
+            tableView.reloadData()
+        }
     }
     //now i can register my custom cells
     func registerTableViewCells(){
@@ -52,28 +97,43 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postData.count
+        if(editingBar){
+            return filteredData.count
+        }
+        else{
+            return postData.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //kilgore change, changed the cell so it loads my custom class and also sets a description blurb under the title
         let cell = tableView.dequeueReusableCell(withIdentifier: "customViewCell") as? customViewCell
-        
-        ref?.child("Posts").child(postData[indexPath.row]).observeSingleEvent(of: .value, with: {(snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let title = value?["Title"] as? String ?? "Title Placeholder"
-            let body = value?["Body"] as? String ?? "Body Placeholder"
-            cell?.header.text = title
-            cell?.footer.text = body//this is what actually gets put in the cell
-        })
-        
+        if(editingBar){
+            cell?.header.text = titleData[filteredIndex[indexPath.row]]
+            cell?.footer.text = descData[filteredIndex[indexPath.row]]
+        }
+        else{
+            cell?.header.text = titleData[indexPath.row]
+            cell?.footer.text = descData[indexPath.row]
+            /*ref?.child("Posts").child(postData[indexPath.row]).observeSingleEvent(of: .value, with: {(snapshot) in
+                let value = snapshot.value as? NSDictionary
+                let title = value?["Title"] as? String ?? "Title Placeholder"
+                let body = value?["Body"] as? String ?? "Body Placeholder"
+                cell?.header.text = title
+                cell?.footer.text = body//this is what actually gets put in the cell
+            })*/
+        }
         
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        passMe = postData[indexPath.row]
+        if(editingBar){
+            passMe = postData[filteredIndex[indexPath.row]]
+        }
+        else{
+            passMe = postData[indexPath.row]
+        }
         
         performSegue(withIdentifier: "segue", sender: self)
     }
