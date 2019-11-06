@@ -22,6 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var editingBar:Bool = false
     var refresher:UIRefreshControl!
 
+    @IBOutlet weak var userButton: UIBarButtonItem!
     var searchController: UISearchController!
     
     var postData = [String]() //holds a list of database post keys
@@ -157,6 +158,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         performSegue(withIdentifier: "segue", sender: self)
     }
     @IBAction func cancel(_ unwindSegue: UIStoryboardSegue) {
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
