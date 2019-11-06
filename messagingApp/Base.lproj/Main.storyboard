@@ -57,7 +57,7 @@
                             <constraint firstItem="FPi-UL-krG" firstAttribute="top" secondItem="4lx-Uz-yig" secondAttribute="top" constant="100" id="E9B-uV-q0v"/>
                             <constraint firstItem="4lx-Uz-yig" firstAttribute="trailing" secondItem="C6j-XX-axf" secondAttribute="trailing" constant="20" id="INN-0b-arE"/>
                             <constraint firstItem="C6j-XX-axf" firstAttribute="top" secondItem="FPi-UL-krG" secondAttribute="bottom" constant="10" id="LQI-sk-2kz"/>
-                            <constraint firstItem="B6Y-YO-OME" firstAttribute="top" secondItem="cgZ-PO-2S2" secondAttribute="bottom" constant="20" id="O6E-Po-ChE"/>
+                            <constraint firstItem="B6Y-YO-OME" firstAttribute="top" secondItem="cgZ-PO-2S2" secondAttribute="bottom" constant="10" id="O6E-Po-ChE"/>
                             <constraint firstItem="4lx-Uz-yig" firstAttribute="trailing" secondItem="cgZ-PO-2S2" secondAttribute="trailing" constant="20" id="OiX-Gf-eCb"/>
                             <constraint firstItem="C6j-XX-axf" firstAttribute="leading" secondItem="4lx-Uz-yig" secondAttribute="leading" constant="20" id="Owo-kB-svH"/>
                             <constraint firstItem="B6Y-YO-OME" firstAttribute="leading" secondItem="4lx-Uz-yig" secondAttribute="leading" constant="20" id="POL-ot-bIu"/>
@@ -66,7 +66,6 @@
                             <constraint firstItem="c8h-4K-71a" firstAttribute="top" secondItem="B6Y-YO-OME" secondAttribute="bottom" constant="20" id="apX-RW-TWe"/>
                             <constraint firstItem="v17-cY-0BP" firstAttribute="top" secondItem="4lx-Uz-yig" secondAttribute="top" constant="20" id="d5G-l9-o8v"/>
                             <constraint firstItem="v17-cY-0BP" firstAttribute="leading" secondItem="4lx-Uz-yig" secondAttribute="leading" constant="20" id="fpM-x9-qVC"/>
-                            <constraint firstItem="B6Y-YO-OME" firstAttribute="top" secondItem="cgZ-PO-2S2" secondAttribute="bottom" constant="10" id="hzM-fl-zsT"/>
                             <constraint firstItem="4lx-Uz-yig" firstAttribute="trailing" secondItem="c8h-4K-71a" secondAttribute="trailing" constant="50" id="jqb-6m-l4e"/>
                             <constraint firstItem="cgZ-PO-2S2" firstAttribute="leading" secondItem="4lx-Uz-yig" secondAttribute="leading" constant="20" id="k2f-rZ-AEi"/>
                             <constraint firstItem="4lx-Uz-yig" firstAttribute="trailing" secondItem="FPi-UL-krG" secondAttribute="trailing" constant="20" id="my1-bN-Zd2"/>
