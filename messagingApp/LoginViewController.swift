@@ -11,6 +11,7 @@ import FirebaseDatabase
 
 class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var userText: UITextField!
     @IBOutlet weak var passText: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -38,9 +39,13 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
         })
         newUser.addTarget(self, action:#selector(newUserAdded), for: .touchUpInside)
         loginButton.addTarget(self,action:#selector(loginTo),for: .touchUpInside)
+        cancelButton.addTarget(self, action:#selector(exitScreen), for: .touchUpInside)
         userText.delegate = self
         passText.delegate = self
         // Do any additional setup after loading the view.
+    }
+    @IBAction func exitScreen(sender:UIButton){
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     @IBAction func loginTo(sender:UIButton){
         var userName:String = ""

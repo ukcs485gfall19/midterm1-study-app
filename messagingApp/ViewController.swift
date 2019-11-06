@@ -158,7 +158,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         performSegue(withIdentifier: "segue", sender: self)
     }
     @IBAction func cancel(_ unwindSegue: UIStoryboardSegue) {
-        
+        userButton.isEnabled = false
+        navigationItem.leftBarButtonItem = nil
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
