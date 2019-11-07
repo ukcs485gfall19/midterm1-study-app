@@ -113,7 +113,7 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        let vc = segue.destination as! ViewController
             vc.userID = self.userSegue
-            vc.navItem.title = self.userSegue
+        vc.navItem.title = vc.userID
     }
 
 }

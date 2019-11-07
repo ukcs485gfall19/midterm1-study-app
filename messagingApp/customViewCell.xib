@@ -31,13 +31,13 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="dmV-GY-KLF" secondAttribute="trailing" constant="20" id="2Bj-CX-aQ5"/>
-                    <constraint firstAttribute="trailing" secondItem="SDC-YB-d6P" secondAttribute="trailing" constant="20" id="4fR-ZG-EUO"/>
                     <constraint firstItem="SDC-YB-d6P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="5h7-U4-g4S"/>
                     <constraint firstAttribute="bottom" secondItem="dmV-GY-KLF" secondAttribute="bottom" constant="5" id="9Fa-oO-rnf"/>
+                    <constraint firstAttribute="trailing" secondItem="dmV-GY-KLF" secondAttribute="trailing" constant="20" id="K7o-ue-9Ct"/>
                     <constraint firstItem="SDC-YB-d6P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="U4Y-1U-dG0"/>
                     <constraint firstItem="dmV-GY-KLF" firstAttribute="top" secondItem="SDC-YB-d6P" secondAttribute="bottom" constant="5" id="VK8-R4-6cU"/>
                     <constraint firstItem="dmV-GY-KLF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ptA-5Y-Zzz"/>
+                    <constraint firstAttribute="trailing" secondItem="SDC-YB-d6P" secondAttribute="trailing" constant="20" id="sSE-mx-QdY"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -21,8 +21,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var descData = [String]()
     var editingBar:Bool = false
     var refresher:UIRefreshControl!
-
+    var starredPosts = [String]()
+    var switches = [UISwitch]()
+    var loaded = true
+    //var starredTitles = [String]()
+    //var starredDescs = [String]()
+    
+    //login variables
     @IBOutlet weak var userButton: UIBarButtonItem!
+    var loggedIn = false
+    
     var searchController: UISearchController!
     
     var postData = [String]() //holds a list of database post keys
@@ -36,10 +44,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         navItem.title = "Posts"
         self.registerTableViewCells()
         
+        //just for simplicity
+        userButton.tintColor = UIColor.systemBlue
+        
         tableView.delegate = self
         tableView.dataSource = self
         
-        
+        //adds the segue buttons
+        userButton.action = #selector(login)
+        userButton.target = self
         
         //set the firebase reference
         ref = Database.database().reference()
@@ -135,16 +148,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //kilgore change, changed the cell so it loads my custom class and also sets a description blurb under the title
         let cell = tableView.dequeueReusableCell(withIdentifier: "customViewCell") as? customViewCell
+        /* ignore this stuff
+        let switchView = UISwitch(frame: .zero)
+        switchView.setOn(false, animated: true)
+        switchView.tag = indexPath.row // for detect which row switch Changed
+        switchView.addTarget(self, action: #selector(switchchanged), for: .valueChanged)
+        switches.append(switchView)
+         */
+        //print(switches.count)
         if(editingBar){
             cell?.header.text = titleData[filteredIndex[indexPath.row]]
             cell?.footer.text = descData[filteredIndex[indexPath.row]]
+           // cell?.accessoryView = nil
         }
         else{
             cell?.header.text = titleData[indexPath.row]
             cell?.footer.text = descData[indexPath.row]
+            //cell?.accessoryView = switches[indexPath.row]
         }
         
         return cell!
+    }
+    @IBAction func switchchanged(_ sender: UISwitch!){
+        if(sender.isOn){
+            print(sender.tag)
+            starredPosts.append(postData[sender.tag])
+        }
+        else{
+            starredPosts.remove(at: starredPosts.firstIndex(of:postData[sender.tag])!)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -157,15 +189,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         performSegue(withIdentifier: "segue", sender: self)
     }
-    @IBAction func cancel(_ unwindSegue: UIStoryboardSegue) {
-        userButton.isEnabled = false
-        navigationItem.leftBarButtonItem = nil
+    @IBAction func login(){
+        if(!loggedIn){
+            performSegue(withIdentifier: "userSegue", sender: self)
+        }
+        else{
+            performSegue(withIdentifier: "userPage", sender: self)
+        }
+    }
+    @IBAction func signin(_ unwindSegue: UIStoryboardSegue) {
+        userButton.tintColor = UIColor.black
+        loggedIn = true
+    }
+    @IBAction func signout(_ unwindSegue: UIStoryboardSegue) {
+        userButton.tintColor = UIColor.systemBlue
+        loggedIn = false
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "segue" {
         let vc = segue.destination as! CellViewController
             vc.postId = self.passMe //passing id to cell view
+        }
+        if segue.identifier == "userPage"{
+            let vc = segue.destination as! ProfileViewController
+            vc.postIDs = starredPosts
+            vc.userName = userID
         }
     }
     
