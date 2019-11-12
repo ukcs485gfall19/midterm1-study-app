@@ -12,8 +12,14 @@ class customViewCell: UITableViewCell {
 
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var footer: UILabel!
+    let switchView = UISwitch(frame: .zero)
+    
+    var objectId:String=""
     override func awakeFromNib() {
         super.awakeFromNib()
+        switchView.setOn(false, animated: true)
+        switchView.addTarget(self, action: #selector(switchchanged), for: .valueChanged)
+        //switchView.tag = indexPath.row // for detect which row switch Changed
         // Initialization code
     }
 
@@ -22,5 +28,14 @@ class customViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    @objc func switchchanged(_ sender: UISwitch!){
+        if(sender.isOn){
+            
+        }
+        else{
+            
+        }
+    }
+    
     
 }

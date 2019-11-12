@@ -12,10 +12,6 @@ import FirebaseDatabase
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    
-    
-    
-
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var UIDLabel: UILabel!

@@ -21,11 +21,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var descData = [String]()
     var editingBar:Bool = false
     var refresher:UIRefreshControl!
-    var starredPosts = [String]()
-    var switches = [UISwitch]()
     var loaded = true
-    //var starredTitles = [String]()
-    //var starredDescs = [String]()
+    //our model
+    var model = postModel()
     
     //login variables
     @IBOutlet weak var userButton: UIBarButtonItem!
@@ -35,8 +33,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var postData = [String]() //holds a list of database post keys
     var passMe = "" //holds the unique database post key to be passed to the cell view
-    var ref:DatabaseReference?
-    var databaseHandle:DatabaseHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,24 +50,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         userButton.action = #selector(login)
         userButton.target = self
         
-        //set the firebase reference
-        ref = Database.database().reference()
-        
         //sets the refresher
         configureRefreshControl()
         tableView.refreshControl = refresher
         
         //retrieve posts and listen for changes
-        databaseHandle = ref?.child("Posts").observe(.childAdded, with: { (snapshot) in
-            let postId = snapshot.key
-            self.postData.append(postId)
-            let value = snapshot.value as? NSDictionary
-            self.titleData.append(value?["Title"] as? String ?? "Title Placeholder")
-            self.descData.append(value?["Body"] as? String ?? "Body Placeholder")
-            self.filteredData = self.titleData
-            self.filteredIndex.append(-1)
-            self.tableView.reloadData()
-        })
+        model.loadDataWithView(view: self)
+        
         //gets rid of weird empty space at top of grouped cell view
         var frame = CGRect.zero
         frame.size.height = .leastNormalMagnitude
@@ -100,11 +85,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             editingBar = true
             filteredData = []
             filteredIndex = []
-            for indexString in titleData{
+            var indexNum = 0;
+            for index in model.posts{
+                let indexString:String = index.title
                 if(indexString.lowercased().contains(searchText.lowercased())){
                     filteredData.append(indexString)
-                    filteredIndex.append(titleData.firstIndex(of:indexString) ?? 0)
+                    filteredIndex.append(indexNum)
                 }
+                indexNum+=1
             }
             if(searchText.count==0){
                 editingBar = false
@@ -124,7 +112,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return filteredData.count
         }
         else{
-            return postData.count
+            return model.posts.count
         }
     }
     
@@ -148,43 +136,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //kilgore change, changed the cell so it loads my custom class and also sets a description blurb under the title
         let cell = tableView.dequeueReusableCell(withIdentifier: "customViewCell") as? customViewCell
-        /* ignore this stuff
-        let switchView = UISwitch(frame: .zero)
-        switchView.setOn(false, animated: true)
-        switchView.tag = indexPath.row // for detect which row switch Changed
-        switchView.addTarget(self, action: #selector(switchchanged), for: .valueChanged)
-        switches.append(switchView)
-         */
+        // ignore this stuff
+        
+        //cell?.objectId = postData[indexPath.row]
+
+         
         //print(switches.count)
         if(editingBar){
-            cell?.header.text = titleData[filteredIndex[indexPath.row]]
-            cell?.footer.text = descData[filteredIndex[indexPath.row]]
-           // cell?.accessoryView = nil
+            cell?.header.text = model.posts[filteredIndex[indexPath.row]].title
+            cell?.footer.text = model.posts[filteredIndex[indexPath.row]].desc
         }
         else{
-            cell?.header.text = titleData[indexPath.row]
-            cell?.footer.text = descData[indexPath.row]
-            //cell?.accessoryView = switches[indexPath.row]
+            cell?.header.text = model.posts[indexPath.row].title
+            cell?.footer.text = model.posts[indexPath.row].desc
         }
         
         return cell!
     }
-    @IBAction func switchchanged(_ sender: UISwitch!){
-        if(sender.isOn){
-            print(sender.tag)
-            starredPosts.append(postData[sender.tag])
-        }
-        else{
-            starredPosts.remove(at: starredPosts.firstIndex(of:postData[sender.tag])!)
-        }
-    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(editingBar){
-            passMe = postData[filteredIndex[indexPath.row]]
+            passMe = model.posts[filteredIndex[indexPath.row]].id
         }
         else{
-            passMe = postData[indexPath.row]
+            passMe = model.posts[indexPath.row].id
         }
         
         performSegue(withIdentifier: "segue", sender: self)
@@ -208,12 +184,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "segue" {
-        let vc = segue.destination as! CellViewController
+            let vc = segue.destination as! CellViewController
             vc.postId = self.passMe //passing id to cell view
         }
         if segue.identifier == "userPage"{
             let vc = segue.destination as! ProfileViewController
-            vc.postIDs = starredPosts
+            //vc.postIDs = starredPosts
             vc.userName = userID
         }
     }
