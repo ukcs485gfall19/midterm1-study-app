@@ -20,7 +20,6 @@
 		1A3630D82371FAEC00A76386 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3630D72371FAEC00A76386 /* LoginViewController.swift */; };
 		1A3630E0237B34B100A76386 /* postModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3630DF237B34B100A76386 /* postModel.swift */; };
 		1A3630E2237B357E00A76386 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3630E1237B357E00A76386 /* Post.swift */; };
-		1A3630E4237B487100A76386 /* userModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3630E3237B487100A76386 /* userModel.swift */; };
 		1A3630E6237B49B700A76386 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3630E5237B49B700A76386 /* User.swift */; };
 		53D5DE44360D3DC41C0A150C /* Pods_messagingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AE258E28AC5368DDB7C249 /* Pods_messagingApp.framework */; };
 		7A76F2BB23401C2400D5CB5E /* CellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76F2BA23401C2400D5CB5E /* CellViewController.swift */; };
@@ -42,7 +41,6 @@
 		1A3630D72371FAEC00A76386 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1A3630DF237B34B100A76386 /* postModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postModel.swift; sourceTree = "<group>"; };
 		1A3630E1237B357E00A76386 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		1A3630E3237B487100A76386 /* userModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userModel.swift; sourceTree = "<group>"; };
 		1A3630E5237B49B700A76386 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4A27E98E4568234219212173 /* Pods-messagingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-messagingApp.debug.xcconfig"; path = "Target Support Files/Pods-messagingApp/Pods-messagingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		68AE258E28AC5368DDB7C249 /* Pods_messagingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_messagingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +85,6 @@
 				194678B6232AD46100995AF7 /* ViewController.swift */,
 				1A3630DF237B34B100A76386 /* postModel.swift */,
 				1A3630E1237B357E00A76386 /* Post.swift */,
-				1A3630E3237B487100A76386 /* userModel.swift */,
 				1A3630E5237B49B700A76386 /* User.swift */,
 				1932A01C233C693200212C13 /* ComposeViewController.swift */,
 				7A76F2BA23401C2400D5CB5E /* CellViewController.swift */,
@@ -241,7 +238,6 @@
 			files = (
 				1A3630D82371FAEC00A76386 /* LoginViewController.swift in Sources */,
 				1932A01D233C693300212C13 /* ComposeViewController.swift in Sources */,
-				1A3630E4237B487100A76386 /* userModel.swift in Sources */,
 				1A3630CD2368B79E00A76386 /* customViewCell.swift in Sources */,
 				1A3630E0237B34B100A76386 /* postModel.swift in Sources */,
 				194678B7232AD46100995AF7 /* ViewController.swift in Sources */,

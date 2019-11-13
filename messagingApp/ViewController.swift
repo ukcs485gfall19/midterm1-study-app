@@ -15,13 +15,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navItem: UINavigationItem!
     var userID:String!
+    var user = User()
     var filteredData = [String]()
     var filteredIndex = [Int]()
-    var titleData = [String]()
-    var descData = [String]()
     var editingBar:Bool = false
     var refresher:UIRefreshControl!
-    var loaded = true
+    var postIDS = [String]()
+    var cellsOn = [Bool]()
+    var switches = [UISwitch]()
+    var starredIndexes = [Int]()
     //our model
     var model = postModel()
     
@@ -136,21 +138,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //kilgore change, changed the cell so it loads my custom class and also sets a description blurb under the title
         let cell = tableView.dequeueReusableCell(withIdentifier: "customViewCell") as? customViewCell
-        // ignore this stuff
+        cell?.switchView.isHidden = !loggedIn || editingBar
         
-        //cell?.objectId = postData[indexPath.row]
-
-         
-        //print(switches.count)
         if(editingBar){
-            cell?.header.text = model.posts[filteredIndex[indexPath.row]].title
-            cell?.footer.text = model.posts[filteredIndex[indexPath.row]].desc
+            cell?.post = model.posts[filteredIndex[indexPath.row]]
         }
         else{
-            cell?.header.text = model.posts[indexPath.row].title
-            cell?.footer.text = model.posts[indexPath.row].desc
+            cell?.post = model.posts[indexPath.row]
         }
-        
+        cell?.user = user
+        cell?.load()
         return cell!
     }
     
@@ -165,7 +162,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         performSegue(withIdentifier: "segue", sender: self)
     }
-    @IBAction func login(){
+    @objc func login(){
         if(!loggedIn){
             performSegue(withIdentifier: "userSegue", sender: self)
         }
@@ -173,16 +170,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             performSegue(withIdentifier: "userPage", sender: self)
         }
     }
-    @IBAction func signin(_ unwindSegue: UIStoryboardSegue) {
+    @objc func signin(_ unwindSegue: UIStoryboardSegue) {
+        tableView.reloadData()
         userButton.tintColor = UIColor.black
         loggedIn = true
     }
-    @IBAction func signout(_ unwindSegue: UIStoryboardSegue) {
+    @objc func signout(_ unwindSegue: UIStoryboardSegue) {
+        tableView.reloadData()
         userButton.tintColor = UIColor.systemBlue
         loggedIn = false
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "userSegue"{
+            let vc = segue.destination as! LoginViewController
+            vc.model = model
+            
+        }
         if segue.identifier == "segue" {
             let vc = segue.destination as! CellViewController
             vc.postId = self.passMe //passing id to cell view
@@ -190,7 +193,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if segue.identifier == "userPage"{
             let vc = segue.destination as! ProfileViewController
             //vc.postIDs = starredPosts
-            vc.userName = userID
+            vc.user = self.user
         }
     }
     

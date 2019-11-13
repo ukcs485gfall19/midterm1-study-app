@@ -19,23 +19,23 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     //adding references
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
-    //adding double arrays
-    var userIDArr = [String]()
-    var userArr = [String]()
-    var passArr = [String]()
+    var model = postModel()
     //making the username for the segue
-    var userSegue:String!
+    var userSegue = User()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //add reference and load in usernames/passwords
+        //model.loadData()
         ref = Database.database().reference()
         databaseHandle = ref?.child("Users").observe(.childAdded, with: { (snapshot) in
             let postId = snapshot.key
-            self.userIDArr.append(postId)
             let value = snapshot.value as? NSDictionary
-            self.userArr.append(value?["Username"] as? String ?? "null")
-            self.passArr.append(value?["Password"] as? String ?? "null")
+            let newPost = User()
+            newPost.userName = value?["Username"] as? String ?? "useruser"
+            newPost.password = value?["Password"] as? String ?? "passpass"
+            newPost.userID = postId
+            self.model.users.append(newPost)
         })
         newUser.addTarget(self, action:#selector(newUserAdded), for: .touchUpInside)
         loginButton.addTarget(self,action:#selector(loginTo),for: .touchUpInside)
@@ -50,18 +50,14 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     @IBAction func loginTo(sender:UIButton){
         var userName:String = ""
         var passWord:String = ""
-        var passIndex:Int = 0
-        for testUsers in userArr{
-            if(testUsers == userText.text){
-                userName = testUsers
-                passIndex = userArr.firstIndex(of: userName) ?? 0
+        for testuser in model.users{
+            if(testuser.userName == userText.text && testuser.password == passText.text){
+                userSegue = testuser
+                userName = testuser.userName
+                passWord = testuser.password
             }
         }
-        if(passArr[passIndex] == passText.text){
-            passWord = passArr[passIndex]
-        }
         if(userName != "" && passWord != ""){
-           userSegue = userName
             performSegue(withIdentifier: "returnView", sender: self)
         }
         else{
@@ -72,8 +68,8 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     }
     @IBAction func newUserAdded(sender:UIButton){
         if userText.text != "" && passText.text != ""{
-            for check in userArr{
-                if(userText.text == check){
+            for check in model.users{
+                if(userText.text == check.userName){
                     let alertController = UIAlertController(title: "Alert", message: "Username Taken", preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: "Ok", style: .default))
                     self.present(alertController, animated: true, completion: nil)
@@ -82,15 +78,18 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
             }
            //create a new child with an auto-generated id
            let id:String? = ref?.child("Users").childByAutoId().key
+            let newuser = User()
            
            //here is where the password tag is set
            ref?.child("Users").child(id!).child("Password").setValue(passText.text) //not sure about this, Im forcibly unwrapping something that couls be nil. can it be nil?? idk... still need to check on that
-           
+            newuser.password = passText.text
+            
            //here is where the username tag is set
            ref?.child("Users").child(id!).child("Username").setValue(userText.text)
-            
+            newuser.userName = userText.text
             //should automatically log the user in after creating account
-            userSegue = userText.text
+            newuser.userID = id!
+           userSegue = newuser
            performSegue(withIdentifier: "returnView", sender: self)
        }
        else{
@@ -111,9 +110,9 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     }
     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       let vc = segue.destination as! ViewController
-            vc.userID = self.userSegue
-        vc.navItem.title = vc.userID
+        let vc = segue.destination as! ViewController
+        vc.user = self.userSegue
+        vc.navItem.title = vc.user.userName
     }
 
 }

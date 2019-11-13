@@ -11,15 +11,17 @@ import FirebaseDatabase
 
 class postModel: NSObject{
     var posts = [Post]() //holds a list of database posts
+    var users = [User]()
     var postIDS = [String]()
     var ref:DatabaseReference?
-    var databaseHandle:DatabaseHandle?
+    var databasePostHandle:DatabaseHandle?
+    var databaseUserHandle:DatabaseHandle?
     
     
     func loadDataWithView(view: ViewController) {
         ref = Database.database().reference()
         //retrieve posts and listen for changes
-        databaseHandle = ref?.child("Posts").observe(.childAdded, with: { (snapshot) in
+        databasePostHandle = ref?.child("Posts").observe(.childAdded, with: { (snapshot) in
             let postId = snapshot.key
             let value = snapshot.value as? NSDictionary
             let newPost = Post()
@@ -34,6 +36,16 @@ class postModel: NSObject{
             self.posts.append(newPost)
             view.tableView.reloadData()
             
+        })
+        databaseUserHandle = ref?.child("User").observe(.childAdded, with: { (snapshot) in
+            let postId = snapshot.key
+            let value = snapshot.value as? NSDictionary
+            let newPost = User()
+            newPost.userName = value?["Username"] as? String ?? "useruser"
+            newPost.password = value?["Password"] as? String ?? "passpass"
+            newPost.userID = postId
+            newPost.savedPost = value?["savedPost"] as? String ?? "idkidk"
+            self.users.append(newPost)
         })
     }
     func gimmeTitles() -> [String]{
