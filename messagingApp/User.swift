@@ -12,6 +12,6 @@ class User: NSObject {
     var userID:String!
     var userName:String!
     var password:String!
-    var savedPostID:String!
-    var savedPost = Post()
+    var savedPostsID = [String]()
+    var savedPosts = [String]()
 }

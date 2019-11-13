@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var ref:DatabaseReference?
     var postIDs = [String]()
     var user = User()
+    var model = postModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,13 +45,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         userEventsTableView.estimatedRowHeight = 600
         
         logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
-        
-        postIDs.append(user.savedPost ?? "no posts saved")
+        postIDs = user.savedPosts
         
     }
     func registeruserEventsTableViewCells(){
         let viewFieldCell = UINib(nibName:"customViewCell",bundle:nil)
-        //print(postIDs)
         self.userEventsTableView.register(viewFieldCell, forCellReuseIdentifier: "customViewCell")
     }
     @IBAction func logout(sender:Any){
@@ -62,12 +61,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             vc.navItem.title = "Posts"
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postIDs.count
+        return user.savedPosts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customViewCell") as? customViewCell
-        cell?.header.text = postIDs[indexPath.row]
+        let index = model.postIDS.firstIndex(of:user.savedPosts[indexPath.row])!
+        cell?.post = model.posts[index]
+        cell?.load()
         cell?.switchView.isHidden = true
         return cell!
     }

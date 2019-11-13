@@ -58,6 +58,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //retrieve posts and listen for changes
         model.loadDataWithView(view: self)
+        model.loadUsers()
         
         //gets rid of weird empty space at top of grouped cell view
         var frame = CGRect.zero
@@ -184,7 +185,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if segue.identifier == "userSegue"{
             let vc = segue.destination as! LoginViewController
             vc.model = model
-            
         }
         if segue.identifier == "segue" {
             let vc = segue.destination as! CellViewController
@@ -192,7 +192,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         if segue.identifier == "userPage"{
             let vc = segue.destination as! ProfileViewController
-            //vc.postIDs = starredPosts
+            vc.model = self.model
             vc.user = self.user
         }
     }

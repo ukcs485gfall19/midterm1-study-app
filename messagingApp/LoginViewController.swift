@@ -19,6 +19,7 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     //adding references
     var ref:DatabaseReference?
     var databaseHandle:DatabaseHandle?
+    var databaseHandle2:DatabaseHandle?
     var model = postModel()
     //making the username for the segue
     var userSegue = User()
@@ -26,17 +27,9 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
         super.viewDidLoad()
         
         //add reference and load in usernames/passwords
-        //model.loadData()
         ref = Database.database().reference()
-        databaseHandle = ref?.child("Users").observe(.childAdded, with: { (snapshot) in
-            let postId = snapshot.key
-            let value = snapshot.value as? NSDictionary
-            let newPost = User()
-            newPost.userName = value?["Username"] as? String ?? "useruser"
-            newPost.password = value?["Password"] as? String ?? "passpass"
-            newPost.userID = postId
-            self.model.users.append(newPost)
-        })
+        
+        
         newUser.addTarget(self, action:#selector(newUserAdded), for: .touchUpInside)
         loginButton.addTarget(self,action:#selector(loginTo),for: .touchUpInside)
         cancelButton.addTarget(self, action:#selector(exitScreen), for: .touchUpInside)
@@ -110,6 +103,7 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     }
     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        model.loadUserPosts(userSegue: userSegue)
         let vc = segue.destination as! ViewController
         vc.user = self.userSegue
         vc.navItem.title = vc.user.userName

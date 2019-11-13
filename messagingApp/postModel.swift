@@ -15,6 +15,7 @@ class postModel: NSObject{
     var postIDS = [String]()
     var ref:DatabaseReference?
     var databasePostHandle:DatabaseHandle?
+    var databasePostHandle2:DatabaseHandle?
     var databaseUserHandle:DatabaseHandle?
     
     
@@ -37,15 +38,26 @@ class postModel: NSObject{
             view.tableView.reloadData()
             
         })
-        databaseUserHandle = ref?.child("User").observe(.childAdded, with: { (snapshot) in
+    }
+    func loadUsers(){
+        databaseUserHandle = ref?.child("Users").observe(.childAdded, with: { (snapshot) in
             let postId = snapshot.key
             let value = snapshot.value as? NSDictionary
             let newPost = User()
             newPost.userName = value?["Username"] as? String ?? "useruser"
             newPost.password = value?["Password"] as? String ?? "passpass"
             newPost.userID = postId
-            newPost.savedPost = value?["savedPost"] as? String ?? "idkidk"
             self.users.append(newPost)
+        })
+    }
+    func loadUserPosts(userSegue:User){
+        databasePostHandle2 = ref?.child("Users").child(userSegue.userID).child("savedPosts").observe(.childAdded, with: { (snapshot) in
+            let postId = snapshot.key
+            let value = snapshot.value
+            if(!userSegue.savedPostsID.contains(postId)){
+                userSegue.savedPosts.append(value as? String ?? "empty")
+                userSegue.savedPostsID.append(postId)
+            }
         })
     }
     func gimmeTitles() -> [String]{
