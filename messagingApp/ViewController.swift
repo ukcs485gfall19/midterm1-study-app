@@ -139,7 +139,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //kilgore change, changed the cell so it loads my custom class and also sets a description blurb under the title
         let cell = tableView.dequeueReusableCell(withIdentifier: "customViewCell") as? customViewCell
-        cell?.switchView.isHidden = !loggedIn || editingBar
+        cell?.accessoryView?.isHidden = !loggedIn || editingBar
         
         if(editingBar){
             cell?.post = model.posts[filteredIndex[indexPath.row]]
