@@ -29,6 +29,11 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whK-xm-LB0">
+                        <rect key="frame" x="258" y="15" width="46" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="Button"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="SDC-YB-d6P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="5h7-U4-g4S"/>
@@ -42,8 +47,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="accessoryView" destination="whK-xm-LB0" id="sQg-nE-g1T"/>
                 <outlet property="footer" destination="dmV-GY-KLF" id="miZ-3m-Gjj"/>
                 <outlet property="header" destination="SDC-YB-d6P" id="zuh-Un-Dwn"/>
+                <outlet property="starButton" destination="whK-xm-LB0" id="1Dt-GO-ahQ"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="119.19642857142857"/>
         </tableViewCell>

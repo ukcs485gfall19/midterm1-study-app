@@ -31,10 +31,14 @@ class postModel: NSObject{
             newPost.id = postId
             newPost.location = value?["Location"] as? String ?? "Location Placeholder"
             newPost.number = value?["Number"] as? String ?? "Number Placeholder"
-            newPost.date = value?["Prefix"] as? String ?? "Prefix Placeholder"
-            newPost.prefix = value?["Date"] as? String ?? "Date Placeholder"
-            self.postIDS.append(postId)
-            self.posts.append(newPost)
+            newPost.prefix = value?["Prefix"] as? String ?? "Prefix Placeholder"
+            newPost.date = value?["Date"] as? String ?? "Date Placeholder"
+            if(!self.postIDS.contains(postId)){
+                self.postIDS.append(postId)
+                self.posts.append(newPost)
+                print(newPost.title,newPost.desc)
+                print(self.postIDS.count)
+            }
             view.tableView.reloadData()
             
         })

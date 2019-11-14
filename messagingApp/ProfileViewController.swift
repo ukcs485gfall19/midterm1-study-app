@@ -18,6 +18,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var userEventsTableView: UITableView!
     
     @IBOutlet weak var logoutButton: UIButton!
+    
+    var passMe:String = ""
     var ref:DatabaseReference?
     var postIDs = [String]()
     var user = User()
@@ -56,9 +58,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         performSegue(withIdentifier: "signoutSegue", sender: self)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       let vc = segue.destination as! ViewController
+        if segue.identifier == "segue" {
+            let vc = segue.destination as! CellViewController
+            vc.postId = self.passMe //passing id to cell view
+        }
+        if segue.identifier == "signoutSegue"{
+            let vc = segue.destination as! ViewController
             vc.user = User()
             vc.navItem.title = "Posts"
+        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return user.savedPosts.count
@@ -68,9 +76,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "customViewCell") as? customViewCell
         let index = model.postIDS.firstIndex(of:user.savedPosts[indexPath.row])!
         cell?.post = model.posts[index]
+        cell?.user = user
         cell?.load()
-        cell?.switchView.isHidden = true
+        //cell?.switchView.isHidden = true
         return cell!
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        passMe = user.savedPosts[indexPath.row]
+        
+        performSegue(withIdentifier: "segue", sender: self)
     }
     /*
     // MARK: - Navigation

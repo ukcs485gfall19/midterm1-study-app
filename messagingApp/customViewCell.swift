@@ -17,21 +17,15 @@ class customViewCell: UITableViewCell {
     var post = Post()
     var user = User()
     var isOn:Bool = false
-    let switchView = UISwitch(frame: .zero)
-    let starView = UIButton(type: UIButton.ButtonType.system)
-    
+    @IBOutlet weak var starButton: UIButton!
     var objectId:String = ""
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         ref = Database.database().reference()
-        switchView.addTarget(self, action: #selector(switchchanged), for: .valueChanged)
-        accessoryView = switchView
-        
-        
-        //starView.setImage(UIImage(named: "defaultProfilePic"), for: UIControl.State.normal)
-        starView.setTitle("hello", for: UIControl.State.normal)
-        starView.addTarget(self, action: #selector(starchanged), for: .touchUpInside)
-        //accessoryView = starView
+        starButton.addTarget(self, action: #selector(starred), for: .touchUpInside)
+        starButton.setImage(UIImage(named: "starHollow"), for: UIControl.State.normal)
+        starButton.setTitle("Hello", for: UIControl.State.normal)
         // Initialization code
     }
 
@@ -40,47 +34,29 @@ class customViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     func setOn(on:Bool){
         isOn = on
     }
+    
     func load(){
         header.text = post.title
         footer.text = post.desc
-        switchView.setOn(user.savedPosts.contains(post.id), animated: false)
         setOn(on:user.savedPosts.contains(post.id))
-        /*if(isOn){
-            starView.setImage(UIImage(named: "defaultProfilePic"), for: UIControl.State.normal)
+        if(!isOn){
+            starButton.setImage(UIImage(named: "starHollow"), for: UIControl.State.normal)
         }
         else{
-            starView.setImage(UIImage(named: "Image"), for: UIControl.State.normal)
-        }*/
-    }
-    @objc func switchchanged(_ sender: UISwitch!){
-        
-        //here is where the password tag is set //not sure about this, Im forcibly unwrapping something that couls be nil. can it be nil?? idk... still need to check on that
-        if(sender.isOn){
-            let postid:String? = ref?.child("Users").child(user.userID).child("savedPosts").childByAutoId().key
-            ref?.child("Users").child(user.userID).child("savedPosts").child(postid!).setValue(post.id)
-            user.savedPosts.append(post.id)
-            user.savedPostsID.append(postid!)
-            print(user.savedPosts)
-        }
-        else{
-            let index:Int? = user.savedPosts.firstIndex(of: post.id)
-            ref?.child("Users").child(user.userID).child("savedPosts").child(user.savedPostsID[index!]).removeValue()
-            user.savedPosts.remove(at: index!)
-            user.savedPostsID.remove(at: index!)
+           starButton.setImage(UIImage(named: "starFilled"), for: UIControl.State.normal)
         }
     }
-    @objc func starchanged(_ sender: UISwitch!){
-        
-        //here is where the password tag is set //not sure about this, Im forcibly unwrapping something that couls be nil. can it be nil?? idk... still need to check on that
+    @objc func starred(_ sender: UIButton){
+        isOn = !isOn
         if(isOn){
             let postid:String? = ref?.child("Users").child(user.userID).child("savedPosts").childByAutoId().key
             ref?.child("Users").child(user.userID).child("savedPosts").child(postid!).setValue(post.id)
             user.savedPosts.append(post.id)
             user.savedPostsID.append(postid!)
-            print(user.savedPosts)
         }
         else{
             let index:Int? = user.savedPosts.firstIndex(of: post.id)
@@ -88,6 +64,7 @@ class customViewCell: UITableViewCell {
             user.savedPosts.remove(at: index!)
             user.savedPostsID.remove(at: index!)
         }
+        load()
     }
     
     

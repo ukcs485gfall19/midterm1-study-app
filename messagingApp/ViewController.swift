@@ -81,6 +81,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Make the search bar always visible.
         navigationItem.hidesSearchBarWhenScrolling = false
     }
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
     
     //search bar functions
     func updateSearchResults(for searchController: UISearchController) {
@@ -90,9 +93,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             filteredIndex = []
             var indexNum = 0;
             for index in model.posts{
-                let indexString:String = index.title
-                if(indexString.lowercased().contains(searchText.lowercased())){
-                    filteredData.append(indexString)
+                let titleString:String = index.title.lowercased()
+                let courseString:String = index.prefix.lowercased() + " " + index.number.lowercased()
+                let searchUnder:String = searchText.lowercased()
+                if(titleString.contains(searchUnder)||courseString.contains(searchUnder)){
+                    filteredData.append(titleString)
                     filteredIndex.append(indexNum)
                 }
                 indexNum+=1
@@ -139,8 +144,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //kilgore change, changed the cell so it loads my custom class and also sets a description blurb under the title
         let cell = tableView.dequeueReusableCell(withIdentifier: "customViewCell") as? customViewCell
-        cell?.accessoryView?.isHidden = !loggedIn || editingBar
-        
+        cell?.accessoryView?.isHidden = !loggedIn
         if(editingBar){
             cell?.post = model.posts[filteredIndex[indexPath.row]]
         }
@@ -189,6 +193,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if segue.identifier == "segue" {
             let vc = segue.destination as! CellViewController
             vc.postId = self.passMe //passing id to cell view
+        }
+        if segue.identifier == "composeSegue"{
+            let vc = segue.destination as! ComposeViewController
+            vc.model = model
         }
         if segue.identifier == "userPage"{
             let vc = segue.destination as! ProfileViewController

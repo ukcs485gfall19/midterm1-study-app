@@ -30,6 +30,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     var ref:DatabaseReference?
     let dateFormatter = DateFormatter()
     var datePickerArr:[UIDatePicker] = []
+    var model = postModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,30 +164,32 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         if titleTextField.text != "" && majorTextField.text != "" && classTextField.text != "" && dateTextField.text != "" && locTextField.text != ""{
             //create a new child with an auto-generated id
             let id:String? = ref?.child("Posts").childByAutoId().key
-            
-            //here is where the body tag is set
-            ref?.child("Posts").child(id!).child("Body").setValue(bodyTextField.text) //not sure about this, Im forcibly unwrapping something that couls be nil. can it be nil?? idk... still need to check on that
+            //adding the indexes for the picker selected prefix and number
+            let prefSelect:Int = majorPicker.selectedRow(inComponent:0)
+            let numSelect:Int = classPicker.selectedRow(inComponent:0)
+            let newpost:Post = Post()
+            //making a new post to get rid of a weird error i was getting
+            newpost.id = id!
+            newpost.date = dateFormatter.string(from: datePicker.date)
+            newpost.desc = bodyTextField.text
+            newpost.title = titleTextField.text!
+            newpost.prefix = majorData[prefSelect]
+            newpost.number = classData[prefSelect][numSelect]
+            newpost.location = locTextField.text!
+            model.postIDS.append(id!)
+            model.posts.append(newpost)
             
             //here is where the title tag is set
             ref?.child("Posts").child(id!).child("Title").setValue(titleTextField.text)
-            
-            //adding the indexes for the picker selected prefix and number
-            
-            let prefSelect:Int = majorPicker.selectedRow(inComponent:0)
-            let numSelect:Int = classPicker.selectedRow(inComponent:0)
-            
-            //here is where the prefix tag is set, added stuff so its only what was chosen in the picker not whatever someone types
-            
+            //here is where the body tag is set
+            ref?.child("Posts").child(id!).child("Body").setValue(bodyTextField.text)
+            //here is where the prefix tag is set
             ref?.child("Posts").child(id!).child("Prefix").setValue(majorData[prefSelect])
-            
             //here is where the number tag is set
             ref?.child("Posts").child(id!).child("Number").setValue(classData[prefSelect][numSelect])
-            
             //here is where the location tag is set
             ref?.child("Posts").child(id!).child("Location").setValue(locTextField.text)
-            
             //here is where the date tag is set
-            
             ref?.child("Posts").child(id!).child("Date").setValue(dateFormatter.string(from: datePicker.date))
             ref?.child("Posts").child(id!).child("endTime").setValue(dateFormatter.string(from: endTimePicker.date))
             

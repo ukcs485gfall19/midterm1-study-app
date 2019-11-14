@@ -135,7 +135,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="o27-bS-AgW">
                             <connections>
-                                <segue destination="22G-Al-YBC" kind="presentation" id="p3Y-qg-gK8"/>
+                                <segue destination="22G-Al-YBC" kind="presentation" identifier="composeSegue" id="p3Y-qg-gK8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -358,6 +358,7 @@
                         <outlet property="profileImage" destination="uOZ-Ck-H4s" id="iby-SC-Ihu"/>
                         <outlet property="userEventsTableView" destination="K6w-BC-AyY" id="Q6H-db-jQH"/>
                         <segue destination="n3s-oQ-7xo" kind="unwind" identifier="signoutSegue" unwindAction="signout:" id="4IF-ZB-3ef"/>
+                        <segue destination="ejR-C4-znz" kind="show" identifier="segue" id="m39-46-Dm4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q71-iR-1eK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -471,4 +472,7 @@
         <image name="defaultProfilePic" width="460" height="353"/>
         <image name="person" catalog="system" width="64" height="60"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="TB0-1X-X8t"/>
+    </inferredMetricsTieBreakers>
 </document>
