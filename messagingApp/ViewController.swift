@@ -149,7 +149,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell?.post = model.posts[filteredIndex[indexPath.row]]
         }
         else{
-            cell?.post = model.posts[indexPath.row]
+            cell?.post = model.posts[model.posts.count-indexPath.row-1]
         }
         cell?.user = user
         cell?.load()
@@ -162,7 +162,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             passMe = model.posts[filteredIndex[indexPath.row]].id
         }
         else{
-            passMe = model.posts[indexPath.row].id
+            passMe = model.posts[model.posts.count-indexPath.row-1].id
         }
         
         performSegue(withIdentifier: "segue", sender: self)
