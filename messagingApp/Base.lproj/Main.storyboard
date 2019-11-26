@@ -140,6 +140,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="composeButton" destination="o27-bS-AgW" id="nhK-h5-8G7"/>
                         <outlet property="navItem" destination="kAa-Fy-E7g" id="PzO-Hc-g6A"/>
                         <outlet property="tableView" destination="9hq-E4-zqD" id="Lzi-RV-RjK"/>
                         <outlet property="userButton" destination="yQ8-a4-k54" id="uKu-aL-RDg"/>

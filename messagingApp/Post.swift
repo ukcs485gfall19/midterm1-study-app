@@ -16,4 +16,5 @@ class Post: NSObject {
     var number:String = ""
     var prefix:String = ""
     var date:String = ""
+    var endTime:String = ""
 }

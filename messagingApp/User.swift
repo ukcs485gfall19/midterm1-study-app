@@ -9,9 +9,9 @@
 import UIKit
 
 class User: NSObject {
-    var userID:String!
-    var userName:String!
-    var password:String!
+    var userID:String = ""
+    var userName:String = ""
+    var password:String = ""
     var savedPostsID = [String]()
     var savedPosts = [String]()
 }

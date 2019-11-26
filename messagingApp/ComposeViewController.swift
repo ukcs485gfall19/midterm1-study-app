@@ -31,6 +31,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     let dateFormatter = DateFormatter()
     var datePickerArr:[UIDatePicker] = []
     var model = postModel()
+    var user = User()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
 
         // Do any additional setup after loading the view.
         datePicker.minimumDate = Date()
-        datePicker.minimumDate = Date()
+        endTimePicker.minimumDate = Date()
         majorPicker.delegate = self
         majorPicker.dataSource = self
         majorPicker.tag = 0
@@ -124,9 +125,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0{
             majorTextField.text = majorData[row]
-            //Kilgore change, made sure that theres something displaing when you select a prefix, idk why i added this i just think its neat
             classTextField.text = classData[row][0]
-            //Kilgore addition, doesnt affect anything it just makes the pickers look better
             classPicker.selectRow(0, inComponent:0, animated: false);
         }
         if pickerView.tag == 1 {
@@ -192,7 +191,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UIPickerViewD
             //here is where the date tag is set
             ref?.child("Posts").child(id!).child("Date").setValue(dateFormatter.string(from: datePicker.date))
             ref?.child("Posts").child(id!).child("endTime").setValue(dateFormatter.string(from: endTimePicker.date))
-            
+            //this will be hidden to the user but will be helpful to us
+            if(user.userName != ""){
+                ref?.child("Posts").child(id!).child("User").setValue(user.userName)
+            }
             //close popup
             presentingViewController?.dismiss(animated: true, completion: nil)
         }

@@ -33,11 +33,10 @@ class postModel: NSObject{
             newPost.number = value?["Number"] as? String ?? "Number Placeholder"
             newPost.prefix = value?["Prefix"] as? String ?? "Prefix Placeholder"
             newPost.date = value?["Date"] as? String ?? "Date Placeholder"
+            newPost.endTime = value?["endTime"] as? String ?? "End Placeholder"
             if(!self.postIDS.contains(postId)){
                 self.postIDS.append(postId)
                 self.posts.append(newPost)
-                print(newPost.title,newPost.desc)
-                print(self.postIDS.count)
             }
             view.tableView.reloadData()
             

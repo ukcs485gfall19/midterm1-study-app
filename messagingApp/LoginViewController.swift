@@ -75,11 +75,11 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
            
            //here is where the password tag is set
            ref?.child("Users").child(id!).child("Password").setValue(passText.text) //not sure about this, Im forcibly unwrapping something that couls be nil. can it be nil?? idk... still need to check on that
-            newuser.password = passText.text
+            newuser.password = passText.text!
             
            //here is where the username tag is set
            ref?.child("Users").child(id!).child("Username").setValue(userText.text)
-            newuser.userName = userText.text
+            newuser.userName = userText.text!
             //should automatically log the user in after creating account
             newuser.userID = id!
            userSegue = newuser

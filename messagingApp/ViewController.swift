@@ -26,9 +26,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var starredIndexes = [Int]()
     //our model
     var model = postModel()
+    let defaultuser = UserDefaults.standard
     
     //login variables
     @IBOutlet weak var userButton: UIBarButtonItem!
+    @IBOutlet weak var composeButton: UIBarButtonItem!
     var loggedIn = false
     
     var searchController: UISearchController!
@@ -41,6 +43,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view, typically from a nib.
         navItem.title = "Posts"
         self.registerTableViewCells()
+        composeButton.isEnabled = false
         
         //just for simplicity
         userButton.tintColor = UIColor.systemBlue
@@ -179,11 +182,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.reloadData()
         userButton.tintColor = UIColor.black
         loggedIn = true
+        composeButton.isEnabled = true
+        defaultuser.set(user.userName, forKey: "user")
     }
     @objc func signout(_ unwindSegue: UIStoryboardSegue) {
         tableView.reloadData()
         userButton.tintColor = UIColor.systemBlue
         loggedIn = false
+        composeButton.isEnabled = false
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "userSegue"{
@@ -192,11 +198,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         if segue.identifier == "segue" {
             let vc = segue.destination as! CellViewController
+            vc.model = model
             vc.postId = self.passMe //passing id to cell view
         }
         if segue.identifier == "composeSegue"{
             let vc = segue.destination as! ComposeViewController
             vc.model = model
+            if(user.userName != ""){
+                vc.user = user
+            }
         }
         if segue.identifier == "userPage"{
             let vc = segue.destination as! ProfileViewController

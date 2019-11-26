@@ -19,6 +19,7 @@ class CellViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     var ref:DatabaseReference?
     var postId = "" // INITIALIZE BLANK OBJECT FOR SEGUE
+    var model = postModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,45 +27,28 @@ class CellViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         //noting small change i made here, added spaces to the beginning of each text field to make them look better
-        ref?.child("Posts").child(postId).observeSingleEvent(of: .value, with: {(snapshot) in
-            let value = snapshot.value as? NSDictionary
-            
-            //setting body
-            let body = value?["Body"] as? String ?? "Body Placeholder"
-            self.test.text = body
-            
-            //setting title
-            let title = value?["Title"] as? String ?? "Title Placeholder"
-            self.titleLabel.text = "  " + title
-            
-            //setting course
-            let prefix = value?["Prefix"] as? String ?? "Prefix"
-            let number = value?["Number"] as? String ?? "Number"
-            self.courseLabel.text = "  Course: " + prefix + " " + number
-            
-            //setting date/location
-            let location = value?["Location"] as? String ?? "Location Placeholder"
-            self.locLabel.text = "  Location: " + location
-            let date = value?["Date"] as? String ?? "Date Placeholder"
-            let endTime = value?["endTime"] as? String ?? "End Placeholder"
-            self.dateLabel.text = "  " + date + "-" + endTime.dropFirst(16)
-            
-
-            let labelHolster:[UILabel] = [self.titleLabel,self.courseLabel,self.locLabel,self.dateLabel]
-            //setting some nice boundaries
-            for currLabel in labelHolster{
-                currLabel.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-                currLabel.layer.borderWidth = 0.5
-            }
-            
-        })
+        //setting body
+        let value = model.posts[model.postIDS.firstIndex(of: postId)!]
+        self.test.text = value.desc
         
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+        //setting title
+        self.titleLabel.text = "  " + value.title
+        
+        //setting course
+        self.courseLabel.text = "  Course: " + value.prefix + " " + value.number
+        
+        //setting date/location
+        self.locLabel.text = "  Location: " + value.location
+        self.dateLabel.text = "  " + value.date + "-" + value.endTime.dropFirst(16)
+        
 
+        let labelHolster:[UILabel] = [self.titleLabel,self.courseLabel,self.locLabel,self.dateLabel]
+        //setting some nice boundaries
+        for currLabel in labelHolster{
+            currLabel.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+            currLabel.layer.borderWidth = 0.5
+        }
+    }
     /*
     // MARK: - Navigation
 
