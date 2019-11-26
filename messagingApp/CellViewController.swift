@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import EventKit
 
 //var finalName = ""
 class CellViewController: UIViewController {
@@ -48,6 +49,61 @@ class CellViewController: UIViewController {
             currLabel.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
             currLabel.layer.borderWidth = 0.5
         }
+    }
+    
+    @IBAction func calendarSync(_ sender: Any) {
+        
+        let eventStore:EKEventStore = EKEventStore()
+        ref?.child("Posts").child(postId).observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? NSDictionary
+            
+            let dateFormatter = DateFormatter()
+            let startDate = value?["Date"] as! String
+            let endDate = value?["endTime"] as! String
+            
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
+            dateFormatter.locale = Locale(identifier: "en_US")
+            
+            eventStore.requestAccess(to: .event, completion: {(granted, error) in
+                
+                
+                if (granted) && (error == nil)
+                {
+                    print("granted \(granted)")
+                    print("error \(error)")
+                    
+                    let event:EKEvent = EKEvent(eventStore: eventStore)
+                    event.title = value?["Title"] as? String
+                    event.startDate = dateFormatter.date(from: startDate)
+                    event.endDate = dateFormatter.date(from: endDate)
+                    event.notes = value?["Location"] as? String
+                    event.calendar = eventStore.defaultCalendarForNewEvents
+                    do{
+                        try eventStore.save(event, span: .thisEvent)
+                        self.showEventAdded()
+                    }catch let error as NSError{
+                        print(error)
+                    }
+                    
+                }
+                
+                
+            })
+            
+        })
+    }
+    
+    func showEventAdded()
+    {
+        let alert = UIAlertController(title: "Event Added To Calendar", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        //alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+        
+        //  guard let url = URL(string: "calshow://") else { return }
+        //  UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        
     }
     /*
     // MARK: - Navigation

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RbY-cF-eyy">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RbY-cF-eyy">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,45 +15,45 @@
             <objects>
                 <viewController id="8UX-Eg-cn8" customClass="LoginViewController" customModule="messagingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="25p-KK-XMy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5l0-gB-id4">
-                                <rect key="frame" x="50" y="270" width="38" height="30"/>
+                                <rect key="frame" x="50" y="306" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8h-4K-71a">
-                                <rect key="frame" x="265" y="270" width="99" height="30"/>
+                                <rect key="frame" x="265" y="306" width="99" height="30"/>
                                 <state key="normal" title="Add New User"/>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pass" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B6Y-YO-OME">
-                                <rect key="frame" x="20" y="216" width="374" height="34"/>
+                                <rect key="frame" x="20" y="256" width="374" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C6j-XX-axf">
-                                <rect key="frame" x="20" y="131" width="374" height="34"/>
+                                <rect key="frame" x="20" y="175" width="374" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgZ-PO-2S2">
-                                <rect key="frame" x="20" y="185" width="374" height="21"/>
+                                <rect key="frame" x="20" y="225" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPi-UL-krG">
-                                <rect key="frame" x="20" y="100" width="374" height="21"/>
+                                <rect key="frame" x="20" y="144" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v17-cY-0BP">
-                                <rect key="frame" x="20" y="20" width="54" height="40"/>
+                                <rect key="frame" x="20" y="64" width="54" height="40"/>
                                 <state key="normal" title="Cancel"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4lx-Uz-yig" firstAttribute="trailing" secondItem="v17-cY-0BP" secondAttribute="trailing" constant="340" id="BIw-XQ-pAe"/>
                             <constraint firstItem="FPi-UL-krG" firstAttribute="top" secondItem="4lx-Uz-yig" secondAttribute="top" constant="100" id="E9B-uV-q0v"/>
@@ -106,7 +108,7 @@
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" id="CMm-0A-AeB">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CMm-0A-AeB" id="qHN-Qv-Jlc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -126,7 +128,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="kAa-Fy-E7g">
-                        <barButtonItem key="leftBarButtonItem" image="person" catalog="system" id="yQ8-a4-k54">
+                        <barButtonItem key="leftBarButtonItem" image="person" id="yQ8-a4-k54">
                             <connections>
                                 <segue destination="8UX-Eg-cn8" kind="popoverPresentation" identifier="userSegue" popoverAnchorView="8bC-Xf-vdC" id="kMR-uu-B1p">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -157,11 +159,11 @@
             <objects>
                 <viewController id="22G-Al-YBC" customClass="ComposeViewController" customModule="messagingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yy9-s8-Aeb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMx-ut-9Lj">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Create Event" id="qvZ-oP-6nY">
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="trash" id="dPW-4C-KZQ">
@@ -178,7 +180,7 @@
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uh6-P0-AIJ">
-                                <rect key="frame" x="10" y="76" width="394" height="40"/>
+                                <rect key="frame" x="10" y="108" width="394" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Vjn-E2-jCm"/>
@@ -187,13 +189,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dIa-Ol-6tj">
-                                <rect key="frame" x="10" y="406" width="394" height="392"/>
+                                <rect key="frame" x="10" y="438" width="394" height="414"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Course Prefix" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="69L-t5-qB7">
-                                <rect key="frame" x="10" y="136" width="394" height="40"/>
+                                <rect key="frame" x="10" y="168" width="394" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="lii-fV-mXZ"/>
@@ -202,7 +204,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d52-46-Elv">
-                                <rect key="frame" x="10" y="186" width="394" height="40"/>
+                                <rect key="frame" x="10" y="218" width="394" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="OcB-Uv-gbD"/>
@@ -211,7 +213,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PX9-dU-4bl">
-                                <rect key="frame" x="10" y="246" width="394" height="40"/>
+                                <rect key="frame" x="10" y="278" width="394" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Na1-dG-Gxf"/>
@@ -220,7 +222,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82C-Cn-9gm">
-                                <rect key="frame" x="10" y="296" width="394" height="40"/>
+                                <rect key="frame" x="10" y="328" width="394" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="MzM-Ph-2hi"/>
@@ -229,7 +231,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9fx-DB-kBB">
-                                <rect key="frame" x="10" y="346" width="394" height="40"/>
+                                <rect key="frame" x="10" y="378" width="394" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="jSY-4c-7X7"/>
@@ -316,7 +318,7 @@
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="NJd-bm-Zcc">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NJd-bm-Zcc" id="Mtg-Ot-2bH">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -330,7 +332,7 @@
                                 <state key="normal" title="Sign Out"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ald-9K-axW" firstAttribute="trailing" secondItem="mpm-Rn-MgK" secondAttribute="trailing" constant="177" id="3Mf-wK-nJe"/>
                             <constraint firstItem="ald-9K-axW" firstAttribute="bottom" secondItem="K6w-BC-AyY" secondAttribute="bottom" id="A1R-dk-LsF"/>
@@ -437,7 +439,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WBh-UE-6E7"/>
                     </view>
-                    <navigationItem key="navigationItem" id="obB-Bw-uc0"/>
+                    <navigationItem key="navigationItem" id="obB-Bw-uc0">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="action" id="xPZ-g9-F7Z">
+                            <connections>
+                                <action selector="calendarSync:" destination="ejR-C4-znz" id="xnf-eX-oQl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="courseLabel" destination="EWT-f0-4OX" id="R61-XU-bEh"/>
                         <outlet property="dateLabel" destination="3Jh-XW-wkc" id="6dK-zx-Zkx"/>
@@ -471,7 +479,7 @@
     </scenes>
     <resources>
         <image name="defaultProfilePic" width="460" height="353"/>
-        <image name="person" catalog="system" width="64" height="60"/>
+        <image name="person" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TB0-1X-X8t"/>

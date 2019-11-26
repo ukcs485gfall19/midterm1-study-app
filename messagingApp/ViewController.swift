@@ -46,7 +46,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         composeButton.isEnabled = false
         
         //just for simplicity
-        userButton.tintColor = UIColor.systemBlue
+       // userButton.tintColor = UIColor.systemBlue
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -187,7 +187,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     @objc func signout(_ unwindSegue: UIStoryboardSegue) {
         tableView.reloadData()
-        userButton.tintColor = UIColor.systemBlue
+   //     userButton.tintColor = UIColor.systemBlue
         loggedIn = false
         composeButton.isEnabled = false
     }
