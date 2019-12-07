@@ -80,11 +80,20 @@ class CellViewController: UIViewController {
                     event.notes = value?["Location"] as? String
                     event.calendar = eventStore.defaultCalendarForNewEvents
                     do{
+                        
+                        let CALENDAR_DEFAULTS_KEY = "\(String(describing: event.title))\(startDate.description)_ADDED_TO_CALENDAR"
+                        let eventExists = UserDefaults.standard.bool(forKey:CALENDAR_DEFAULTS_KEY)
+                        if eventExists{
+                            self.showDuplicateEvent()
+                        }
+                        else {
                         try eventStore.save(event, span: .thisEvent)
                         self.showEventAdded()
+                        }
                     }catch let error as NSError{
                         print(error)
                     }
+                    
                     
                 }
                 
@@ -94,8 +103,7 @@ class CellViewController: UIViewController {
         })
     }
     
-    func showEventAdded()
-    {
+    func showEventAdded() { DispatchQueue.main.async {
         let alert = UIAlertController(title: "Event Added To Calendar", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         //alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
@@ -104,6 +112,19 @@ class CellViewController: UIViewController {
         //  guard let url = URL(string: "calshow://") else { return }
         //  UIApplication.shared.open(url, options: [:], completionHandler: nil)
         
+    }
+    }
+    
+    func showDuplicateEvent() { DispatchQueue.main.async {
+        let alert = UIAlertController(title: "Event Already Added to Calendar", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        //alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+        
+        //  guard let url = URL(string: "calshow://") else { return }
+        //  UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        
+        }
     }
     /*
     // MARK: - Navigation
